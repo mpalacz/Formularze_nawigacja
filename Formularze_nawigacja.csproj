@@ -46,14 +46,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Laboratoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Laboratoria.Designer.cs">
+      <DependentUpon>Laboratoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MPAlgorytmySortowania.cs" />
+    <Compile Include="ProjektNr2_Palacz53262.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProjektNr2_Palacz53262.Designer.cs">
+      <DependentUpon>ProjektNr2_Palacz53262.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pulpit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pulpit.Designer.cs">
+      <DependentUpon>Pulpit.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Laboratoria.resx">
+      <DependentUpon>Laboratoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProjektNr2_Palacz53262.resx">
+      <DependentUpon>ProjektNr2_Palacz53262.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pulpit.resx">
+      <DependentUpon>Pulpit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

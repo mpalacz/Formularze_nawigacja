@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Formularze_nawigacja
 {
-    public partial class Form1 : Form
+    public partial class ProjektNr2_Palacz53262 : Form
     {
-        public Form1()
+        public ProjektNr2_Palacz53262()
         {
             InitializeComponent();
         }
