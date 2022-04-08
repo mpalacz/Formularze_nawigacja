@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formularze_nawigacja", "Formularze_nawigacja.csproj", "{12662103-26F2-459B-B1BA-9B4F1640ECBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12662103-26F2-459B-B1BA-9B4F1640ECBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12662103-26F2-459B-B1BA-9B4F1640ECBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12662103-26F2-459B-B1BA-9B4F1640ECBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12662103-26F2-459B-B1BA-9B4F1640ECBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {74D72873-A6F8-4F4F-9A48-BC4E7383AB8B}
+	EndGlobalSection
+EndGlobal
