@@ -20,15 +20,14 @@ namespace Formularze_nawigacja
         }
 
         private void mpBTNWynikiTabelaryczne_Click(object sender, EventArgs e)
-        {
-            // zgaszenie kontrolki mpErrorProvider1
+        {// zgaszenie kontrolki mpErrorProvider1
             mpErrorProvider1.Dispose();
             // licznik operacji dominujących 
             ushort mpLicznikOD = 0;
             // uaktywnienie przycisku poleceń dla "obejrzenia" posortowanej tablicy
             mpBTNPoSortowaniu.Enabled = true;
             // sprawdzenie, czy został wybrany algorytm sortowania
-            if(mpCMBAlgorytmySortowania.SelectedIndex < 0)
+            if (mpCMBAlgorytmySortowania.SelectedIndex < 0)
             {
                 // sygnalizacja błędu
                 mpErrorProvider1.SetError(mpBTNWynikiTabelaryczne, "ERROR: musisz wybrać algorytm sortowania");
@@ -51,11 +50,13 @@ namespace Formularze_nawigacja
             }
             // pobranie granicprzedziału wartości elementów tablicy T
             int mpDolnaGranicaPrzedzialu, mpGornaGranicaPrzedzialu;
-            if(!int.TryParse(mpTXTDolnaGranica.Text, out mpGornaGranicaPrzedzialu){
+            if (!int.TryParse(mpTXTDolnaGranica.Text, out mpGornaGranicaPrzedzialu))
+            {
                 mpErrorProvider1.SetError(mpTXTDolnaGranica, "ERROR: wystąpił niedozwolony znak w zapisie dolnej granicy przedziału wartości elementów tablicy T");
                 return;
             }
-            if (!int.TryParse(mpTXTGornaGranica.Text, out mpDolnaGranicaPrzedzialu){
+            if (!int.TryParse(mpTXTGornaGranica.Text, out mpDolnaGranicaPrzedzialu))
+            {
                 mpErrorProvider1.SetError(mpTXTGornaGranica, "ERROR: wystąpił niedozwolony znak w zapisie górnej granicy przedziału wartości elementów tablicy T");
                 return;
             }
@@ -68,11 +69,11 @@ namespace Formularze_nawigacja
             // deklaracje zmiennych pomocniczych
             float mpSredniaOD, mpSumaOD;
             // powtarzanie eksperymentu dla każdego rozmiaru tablicy T
-            for(ushort mpL = 1;mpL< mpMaxRozmiarTablicy; mpL++)
+            for (ushort mpL = 1; mpL < mpMaxRozmiarTablicy; mpL++)
             {
                 // dla każdego rozmiaru tablicy powtarzamy wielokrotnie proces
                 // sortowania i zbierania danych o liczbie wykonanych operacji dominujących
-                for(ushort mpK = 1; mpK < mpLicznoscProbBadawczych; mpK++)
+                for (ushort mpK = 1; mpK < mpLicznoscProbBadawczych; mpK++)
                 {
                     // dla każdego powtórzenia sortowania tablicy "generujemy" losowo jej zawartość
                     for (ushort mpI = 0; mpI < mpL; mpI++)
@@ -116,13 +117,15 @@ namespace Formularze_nawigacja
             }
             // wpisanie uzyskanych danych z przeprowadzonego pomiaru do kontrolki DataGridView
             mpDGVTabelaWynikow.Rows.Clear();
-            for(ushort mpI = 0; mpI < mpMaxRozmiarTablicy; mpI++)
+            for (ushort mpI = 0; mpI < mpMaxRozmiarTablicy; mpI++)
             {
                 mpDGVTabelaWynikow.Rows.Add();
                 mpDGVTabelaWynikow.Rows[mpI].Cells[0].Value = mpI;
                 mpDGVTabelaWynikow.Rows[mpI].Cells[1].Value = mpDaneZPomiaru[mpI];
                 mpDGVTabelaWynikow.Rows[mpI].Cells[2].Value = mpWynikiAnalityczne[mpI];
             }
+
+
         }
     }
 }
