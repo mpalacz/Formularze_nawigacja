@@ -61,6 +61,7 @@ namespace Formularze_nawigacja
             this.button6 = new System.Windows.Forms.Button();
             this.mpDGVTabelaWynikow = new System.Windows.Forms.DataGridView();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.mpBTNPowrotDoPulpitu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWynikow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -103,7 +104,7 @@ namespace Formularze_nawigacja
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1029, 143);
+            this.label3.Location = new System.Drawing.Point(1029, 190);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 38);
             this.label3.TabIndex = 3;
@@ -113,7 +114,7 @@ namespace Formularze_nawigacja
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1029, 43);
+            this.label4.Location = new System.Drawing.Point(1029, 101);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(121, 38);
             this.label4.TabIndex = 4;
@@ -123,7 +124,7 @@ namespace Formularze_nawigacja
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(719, 62);
+            this.label5.Location = new System.Drawing.Point(741, 62);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(142, 19);
             this.label5.TabIndex = 5;
@@ -142,7 +143,7 @@ namespace Formularze_nawigacja
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(267, 62);
+            this.label7.Location = new System.Drawing.Point(255, 62);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(129, 19);
             this.label7.TabIndex = 7;
@@ -190,7 +191,7 @@ namespace Formularze_nawigacja
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1032, 239);
+            this.label12.Location = new System.Drawing.Point(1032, 290);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(134, 19);
             this.label12.TabIndex = 12;
@@ -207,12 +208,12 @@ namespace Formularze_nawigacja
             // 
             this.textBox2.Location = new System.Drawing.Point(592, 103);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 26);
+            this.textBox2.Size = new System.Drawing.Size(120, 26);
             this.textBox2.TabIndex = 14;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(1050, 184);
+            this.textBox3.Location = new System.Drawing.Point(1050, 231);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 26);
             this.textBox3.TabIndex = 15;
@@ -240,9 +241,9 @@ namespace Formularze_nawigacja
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(284, 103);
+            this.textBox7.Location = new System.Drawing.Point(259, 103);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 26);
+            this.textBox7.Size = new System.Drawing.Size(125, 26);
             this.textBox7.TabIndex = 19;
             // 
             // mpCMBAlgorytmySortowania
@@ -257,14 +258,14 @@ namespace Formularze_nawigacja
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(723, 84);
+            this.comboBox2.Location = new System.Drawing.Point(745, 103);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 27);
+            this.comboBox2.Size = new System.Drawing.Size(138, 27);
             this.comboBox2.TabIndex = 21;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(92, 62);
+            this.button1.Location = new System.Drawing.Point(82, 80);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(107, 49);
             this.button1.TabIndex = 22;
@@ -274,7 +275,7 @@ namespace Formularze_nawigacja
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(1052, 514);
+            this.button2.Location = new System.Drawing.Point(1050, 592);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(114, 46);
             this.button2.TabIndex = 23;
@@ -284,7 +285,7 @@ namespace Formularze_nawigacja
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(1052, 458);
+            this.button3.Location = new System.Drawing.Point(1050, 536);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(114, 50);
             this.button3.TabIndex = 24;
@@ -294,9 +295,9 @@ namespace Formularze_nawigacja
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(1050, 386);
+            this.button4.Location = new System.Drawing.Point(1050, 464);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(116, 66);
+            this.button4.Size = new System.Drawing.Size(114, 68);
             this.button4.TabIndex = 25;
             this.button4.Text = "Graficzna prezentacja złożoności";
             this.button4.UseVisualStyleBackColor = true;
@@ -304,7 +305,7 @@ namespace Formularze_nawigacja
             // mpBTNWynikiTabelaryczne
             // 
             this.mpBTNWynikiTabelaryczne.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.mpBTNWynikiTabelaryczne.Location = new System.Drawing.Point(1052, 312);
+            this.mpBTNWynikiTabelaryczne.Location = new System.Drawing.Point(1050, 390);
             this.mpBTNWynikiTabelaryczne.Name = "mpBTNWynikiTabelaryczne";
             this.mpBTNWynikiTabelaryczne.Size = new System.Drawing.Size(114, 68);
             this.mpBTNWynikiTabelaryczne.TabIndex = 26;
@@ -332,16 +333,28 @@ namespace Formularze_nawigacja
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(1036, 95);
+            this.trackBar1.Location = new System.Drawing.Point(1033, 142);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 45);
+            this.trackBar1.Size = new System.Drawing.Size(117, 45);
             this.trackBar1.TabIndex = 29;
+            // 
+            // mpBTNPowrotDoPulpitu
+            // 
+            this.mpBTNPowrotDoPulpitu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpBTNPowrotDoPulpitu.Location = new System.Drawing.Point(1014, 12);
+            this.mpBTNPowrotDoPulpitu.Name = "mpBTNPowrotDoPulpitu";
+            this.mpBTNPowrotDoPulpitu.Size = new System.Drawing.Size(152, 46);
+            this.mpBTNPowrotDoPulpitu.TabIndex = 30;
+            this.mpBTNPowrotDoPulpitu.Text = "Powrót do pulpitu";
+            this.mpBTNPowrotDoPulpitu.UseVisualStyleBackColor = true;
+            this.mpBTNPowrotDoPulpitu.Click += new System.EventHandler(this.mpBTNPowrotDoPulpitu_Click);
             // 
             // Laboratoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 658);
+            this.Controls.Add(this.mpBTNPowrotDoPulpitu);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.mpDGVTabelaWynikow);
             this.Controls.Add(this.button6);
@@ -373,7 +386,9 @@ namespace Formularze_nawigacja
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mpBTNPoSortowaniu);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Laboratoria";
             this.Text = "Laboratoria";
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).EndInit();
@@ -417,5 +432,6 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView mpDGVTabelaWynikow;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.Button mpBTNPowrotDoPulpitu;
     }
 }

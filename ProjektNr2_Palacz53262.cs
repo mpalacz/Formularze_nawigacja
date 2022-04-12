@@ -16,5 +16,12 @@ namespace Formularze_nawigacja
         {
             InitializeComponent();
         }
+
+        private void mpBTNPowrot_Click(object sender, EventArgs e)
+        {
+            Pulpit mpPulpit = new Pulpit();
+            Hide();
+            mpPulpit.FormClosed += new FormClosedEventHandler(delegate { Close(); });
+        }
     }
 }

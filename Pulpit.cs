@@ -25,6 +25,7 @@ namespace Formularze_nawigacja
             Hide();
             // odsłonięcie nowego formularza
             mpLaboratoria.Show();
+            mpLaboratoria.FormClosed += new FormClosedEventHandler(delegate { Close(); });
         }
 
         private void mpBTNProjektNr2_Click(object sender, EventArgs e)
@@ -35,6 +36,7 @@ namespace Formularze_nawigacja
             Hide();
             // odsłonięcie nowego formularza
             mpProjektNr2_Palacz53262.Show();
+            mpProjektNr2_Palacz53262.FormClosed += new FormClosedEventHandler(delegate { Close(); });
         }
     }
 }

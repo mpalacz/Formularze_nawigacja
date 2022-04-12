@@ -20,7 +20,8 @@ namespace Formularze_nawigacja
         }
 
         private void mpBTNWynikiTabelaryczne_Click(object sender, EventArgs e)
-        {// zgaszenie kontrolki mpErrorProvider1
+        {
+            // zgaszenie kontrolki mpErrorProvider1
             mpErrorProvider1.Dispose();
             // licznik operacji dominujących 
             ushort mpLicznikOD = 0;
@@ -126,6 +127,14 @@ namespace Formularze_nawigacja
             }
 
 
+        }
+
+        private void mpBTNPowrotDoPulpitu_Click(object sender, EventArgs e)
+        {
+            Pulpit mpPulpit = new Pulpit();
+            Hide();
+            mpPulpit.Show();
+            mpPulpit.FormClosed += new FormClosedEventHandler(delegate { Close(); });
         }
     }
 }

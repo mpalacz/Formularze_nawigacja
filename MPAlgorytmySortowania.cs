@@ -20,5 +20,13 @@ namespace Formularze_nawigacja
         {
             return 0;
         }
+        public static ushort mpMergeSort(ref int[] mpT, ushort mpD, ushort mpG)
+        {
+            return 0;
+        }
+        public static ushort mpBucketSort(ref int[] mpT, ushort mpD, ushort mpG) 
+        { 
+            return 0;
+        }
     }
 }
