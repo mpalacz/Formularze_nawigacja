@@ -391,6 +391,7 @@ namespace Formularze_nawigacja
             this.MaximizeBox = false;
             this.Name = "Laboratoria";
             this.Text = "Laboratoria";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Laboratoria_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWynikow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();

@@ -37,7 +37,7 @@ namespace Formularze_nawigacja
             // mpBTNLaboratoria
             // 
             this.mpBTNLaboratoria.Location = new System.Drawing.Point(18, 44);
-            this.mpBTNLaboratoria.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mpBTNLaboratoria.Margin = new System.Windows.Forms.Padding(4);
             this.mpBTNLaboratoria.Name = "mpBTNLaboratoria";
             this.mpBTNLaboratoria.Size = new System.Drawing.Size(265, 75);
             this.mpBTNLaboratoria.TabIndex = 0;
@@ -48,7 +48,7 @@ namespace Formularze_nawigacja
             // mpBTNProjektNr2
             // 
             this.mpBTNProjektNr2.Location = new System.Drawing.Point(456, 44);
-            this.mpBTNProjektNr2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mpBTNProjektNr2.Margin = new System.Windows.Forms.Padding(4);
             this.mpBTNProjektNr2.Name = "mpBTNProjektNr2";
             this.mpBTNProjektNr2.Size = new System.Drawing.Size(265, 75);
             this.mpBTNProjektNr2.TabIndex = 1;
@@ -75,9 +75,10 @@ namespace Formularze_nawigacja
             this.Controls.Add(this.mpBTNProjektNr2);
             this.Controls.Add(this.mpBTNLaboratoria);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Pulpit";
             this.Text = "Pulpit";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Pulpit_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

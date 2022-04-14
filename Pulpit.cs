@@ -12,6 +12,10 @@ namespace Formularze_nawigacja
 {
     public partial class Pulpit : Form
     {
+        // deklaracja zmiennych referencyjnych pozostałych formularzy
+        Laboratoria mpLaboratoria = new Laboratoria();
+        ProjektNr2_Palacz53262 mpProjektNr2_Palacz53262 = new ProjektNr2_Palacz53262();
+
         public Pulpit()
         {
             InitializeComponent();
@@ -19,24 +23,24 @@ namespace Formularze_nawigacja
 
         private void mpBTNLaboratoria_Click(object sender, EventArgs e)
         {
-            // deklaracja zmiennej referencyjnej do nowego formularza
-            Laboratoria mpLaboratoria = new Laboratoria();
             // ukrycie bieżącego formularza, czyli Pulpitu
             Hide();
             // odsłonięcie nowego formularza
             mpLaboratoria.Show();
-            mpLaboratoria.FormClosed += new FormClosedEventHandler(delegate { Close(); });
         }
 
         private void mpBTNProjektNr2_Click(object sender, EventArgs e)
         {
-            // deklaracja zmiennej referencyjnej do nowego formularza
-            ProjektNr2_Palacz53262 mpProjektNr2_Palacz53262 = new ProjektNr2_Palacz53262();
             // ukrycie bieżącego formularza, czyli Pulpitu
             Hide();
             // odsłonięcie nowego formularza
             mpProjektNr2_Palacz53262.Show();
-            mpProjektNr2_Palacz53262.FormClosed += new FormClosedEventHandler(delegate { Close(); });
+        }
+
+        // zakończenie działania programu, po zamknięciu okna
+        private void Pulpit_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

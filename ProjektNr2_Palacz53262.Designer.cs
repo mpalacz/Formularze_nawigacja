@@ -113,6 +113,7 @@ namespace Formularze_nawigacja
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProjektNr2_Palacz53262";
             this.Text = "ProjektNr2_Palacz53262";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ProjektNr2_Palacz53262_FormClosed);
             this.ResumeLayout(false);
 
         }

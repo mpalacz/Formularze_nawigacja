@@ -131,10 +131,14 @@ namespace Formularze_nawigacja
 
         private void mpBTNPowrotDoPulpitu_Click(object sender, EventArgs e)
         {
-            Pulpit mpPulpit = new Pulpit();
-            Hide();
-            mpPulpit.Show();
-            mpPulpit.FormClosed += new FormClosedEventHandler(delegate { Close(); });
+            Hide(); // schowanie obecnie pokazywanego okna
+            Application.OpenForms[0].Show(); // pokaznie okna pulpitu
+        }
+
+        // zakończenie działania programu, po zamknięciu okna
+        private void Laboratoria_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
