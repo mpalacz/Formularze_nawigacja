@@ -84,8 +84,21 @@ namespace Formularze_nawigacja
         }
         public static int mpBucketSortProjekt(ref string[] mpT, int mpN)
         {
-            if (mpT.Length == 0)
+            if (mpT.Length <= 0)
                 return 0;
+            List<string>[] mpKubełki = new List<string>[mpN];
+
+            for(int mpI = 0; mpI < mpN; mpI++)
+                mpKubełki[mpI] = new List<string>();
+            for (int mpI = 0; mpI < mpN; mpI++)
+                mpKubełki[mpT[mpI].GetHashCode() / mpN].Add(mpT[mpI]);
+            for (int mpI = 0; mpI < mpN; mpI++)
+                mpKubełki[mpI].Sort();
+
+            int mpIndex = 0;
+            for (int mpI = 0; mpI < mpN; mpI++)
+                for (int mpJ = 0; mpJ < mpKubełki[mpI].Count; mpJ++)
+                    mpT[mpIndex++] = mpKubełki[mpI][mpJ];
             return 0;
         }
     }
