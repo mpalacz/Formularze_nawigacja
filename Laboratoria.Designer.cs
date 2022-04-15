@@ -84,7 +84,7 @@ namespace Formularze_nawigacja
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 152);
+            this.label1.Location = new System.Drawing.Point(33, 152);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(212, 76);
             this.label1.TabIndex = 1;
@@ -161,7 +161,7 @@ namespace Formularze_nawigacja
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(43, 452);
+            this.label9.Location = new System.Drawing.Point(31, 452);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(158, 57);
             this.label9.TabIndex = 9;
@@ -171,7 +171,7 @@ namespace Formularze_nawigacja
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(43, 352);
+            this.label10.Location = new System.Drawing.Point(33, 352);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(156, 57);
             this.label10.TabIndex = 10;
@@ -213,6 +213,7 @@ namespace Formularze_nawigacja
             // 
             // textBox3
             // 
+            this.textBox3.Enabled = false;
             this.textBox3.Location = new System.Drawing.Point(1050, 231);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 26);
@@ -251,7 +252,7 @@ namespace Formularze_nawigacja
             this.mpCMBAlgorytmySortowania.FormattingEnabled = true;
             this.mpCMBAlgorytmySortowania.Location = new System.Drawing.Point(57, 584);
             this.mpCMBAlgorytmySortowania.Name = "mpCMBAlgorytmySortowania";
-            this.mpCMBAlgorytmySortowania.Size = new System.Drawing.Size(121, 27);
+            this.mpCMBAlgorytmySortowania.Size = new System.Drawing.Size(132, 27);
             this.mpCMBAlgorytmySortowania.TabIndex = 20;
             this.mpCMBAlgorytmySortowania.Text = "Wybierz algorytm sortowania";
             // 

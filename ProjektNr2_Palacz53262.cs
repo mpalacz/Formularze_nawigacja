@@ -17,6 +17,11 @@ namespace Formularze_nawigacja
             InitializeComponent();
         }
 
+        private string[] mpGeneratorTablicy()
+        {
+
+        }
+
         private void mpBTNPowrot_Click(object sender, EventArgs e)
         {
             Hide(); // schowanie obecnie pokazywanego okna
