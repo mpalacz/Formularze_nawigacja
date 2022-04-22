@@ -86,20 +86,22 @@ namespace Formularze_nawigacja
         {
             if (mpT.Length <= 0)
                 return 0;
+            int Licznik = 0;
             List<string>[] mpKubełki = new List<string>[mpN];
 
             for(int mpI = 0; mpI < mpN; mpI++)
-                mpKubełki[mpI] = new List<string>();
+                mpKubełki[mpI] = new List<string>(); Licznik++;
             for (int mpI = 0; mpI < mpN; mpI++)
-                mpKubełki[mpT[mpI].GetHashCode() / mpN].Add(mpT[mpI]);
+                mpKubełki[mpT[mpI].GetHashCode() / mpN].Add(mpT[mpI]); Licznik++;
             for (int mpI = 0; mpI < mpN; mpI++)
-                mpKubełki[mpI].Sort();
+                mpKubełki[mpI].Sort(); Licznik++;
 
             int mpIndex = 0;
             for (int mpI = 0; mpI < mpN; mpI++)
                 for (int mpJ = 0; mpJ < mpKubełki[mpI].Count; mpJ++)
-                    mpT[mpIndex++] = mpKubełki[mpI][mpJ];
-            return 0;
+                    mpT[mpIndex++] = mpKubełki[mpI][mpJ]; Licznik++;
+            Console.WriteLine(Licznik);
+            return 4 * mpN;
         }
     }
 }
