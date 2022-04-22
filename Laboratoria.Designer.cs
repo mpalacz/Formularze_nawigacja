@@ -30,6 +30,9 @@ namespace Formularze_nawigacja
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mpBTNPoSortowaniu = new System.Windows.Forms.Button();
             this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -45,26 +48,28 @@ namespace Formularze_nawigacja
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.mpTXTMinimalnaProbaBadawcza = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.mpTXTKolorTla = new System.Windows.Forms.TextBox();
+            this.mpTXTGruboscLinii = new System.Windows.Forms.TextBox();
             this.mpTXTGornaGranica = new System.Windows.Forms.TextBox();
             this.mpTXTDolnaGranica = new System.Windows.Forms.TextBox();
             this.mpTXTRozmiar = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.mpTXTKolorLinii = new System.Windows.Forms.TextBox();
             this.mpCMBAlgorytmySortowania = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.mpBTNWynikWykres = new System.Windows.Forms.Button();
             this.mpBTNWynikiTabelaryczne = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.mpDGVTabelaWynikow = new System.Windows.Forms.DataGridView();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.mpBTNPowrotDoPulpitu = new System.Windows.Forms.Button();
+            this.mpChartWykresKosztuCzasowego = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWynikow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpChartWykresKosztuCzasowego)).BeginInit();
             this.SuspendLayout();
             // 
             // mpBTNPoSortowaniu
@@ -204,20 +209,20 @@ namespace Formularze_nawigacja
             this.mpTXTMinimalnaProbaBadawcza.Size = new System.Drawing.Size(100, 26);
             this.mpTXTMinimalnaProbaBadawcza.TabIndex = 13;
             // 
-            // textBox2
+            // mpTXTKolorTla
             // 
-            this.textBox2.Location = new System.Drawing.Point(592, 103);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(120, 26);
-            this.textBox2.TabIndex = 14;
+            this.mpTXTKolorTla.Location = new System.Drawing.Point(592, 103);
+            this.mpTXTKolorTla.Name = "mpTXTKolorTla";
+            this.mpTXTKolorTla.Size = new System.Drawing.Size(120, 26);
+            this.mpTXTKolorTla.TabIndex = 14;
             // 
-            // textBox3
+            // mpTXTGruboscLinii
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(1050, 231);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 26);
-            this.textBox3.TabIndex = 15;
+            this.mpTXTGruboscLinii.Enabled = false;
+            this.mpTXTGruboscLinii.Location = new System.Drawing.Point(1050, 231);
+            this.mpTXTGruboscLinii.Name = "mpTXTGruboscLinii";
+            this.mpTXTGruboscLinii.Size = new System.Drawing.Size(100, 26);
+            this.mpTXTGruboscLinii.TabIndex = 15;
             // 
             // mpTXTGornaGranica
             // 
@@ -240,12 +245,12 @@ namespace Formularze_nawigacja
             this.mpTXTRozmiar.Size = new System.Drawing.Size(100, 26);
             this.mpTXTRozmiar.TabIndex = 18;
             // 
-            // textBox7
+            // mpTXTKolorLinii
             // 
-            this.textBox7.Location = new System.Drawing.Point(259, 103);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(125, 26);
-            this.textBox7.TabIndex = 19;
+            this.mpTXTKolorLinii.Location = new System.Drawing.Point(259, 103);
+            this.mpTXTKolorLinii.Name = "mpTXTKolorLinii";
+            this.mpTXTKolorLinii.Size = new System.Drawing.Size(125, 26);
+            this.mpTXTKolorLinii.TabIndex = 19;
             // 
             // mpCMBAlgorytmySortowania
             // 
@@ -293,15 +298,16 @@ namespace Formularze_nawigacja
             this.button3.Text = "Resetuj";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // mpBTNWynikWykres
             // 
-            this.button4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(1050, 464);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(114, 68);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "Graficzna prezentacja złożoności";
-            this.button4.UseVisualStyleBackColor = true;
+            this.mpBTNWynikWykres.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpBTNWynikWykres.Location = new System.Drawing.Point(1050, 464);
+            this.mpBTNWynikWykres.Name = "mpBTNWynikWykres";
+            this.mpBTNWynikWykres.Size = new System.Drawing.Size(114, 68);
+            this.mpBTNWynikWykres.TabIndex = 25;
+            this.mpBTNWynikWykres.Text = "Graficzna prezentacja złożoności";
+            this.mpBTNWynikWykres.UseVisualStyleBackColor = true;
+            this.mpBTNWynikWykres.Click += new System.EventHandler(this.mpBTNWynikWykres_Click);
             // 
             // mpBTNWynikiTabelaryczne
             // 
@@ -350,28 +356,45 @@ namespace Formularze_nawigacja
             this.mpBTNPowrotDoPulpitu.UseVisualStyleBackColor = true;
             this.mpBTNPowrotDoPulpitu.Click += new System.EventHandler(this.mpBTNPowrotDoPulpitu_Click);
             // 
+            // mpChartWykresKosztuCzasowego
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.mpChartWykresKosztuCzasowego.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.mpChartWykresKosztuCzasowego.Legends.Add(legend1);
+            this.mpChartWykresKosztuCzasowego.Location = new System.Drawing.Point(284, 152);
+            this.mpChartWykresKosztuCzasowego.Name = "mpChartWykresKosztuCzasowego";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.mpChartWykresKosztuCzasowego.Series.Add(series1);
+            this.mpChartWykresKosztuCzasowego.Size = new System.Drawing.Size(673, 419);
+            this.mpChartWykresKosztuCzasowego.TabIndex = 31;
+            this.mpChartWykresKosztuCzasowego.Visible = false;
+            // 
             // Laboratoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 658);
+            this.Controls.Add(this.mpChartWykresKosztuCzasowego);
             this.Controls.Add(this.mpBTNPowrotDoPulpitu);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.mpDGVTabelaWynikow);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.mpBTNWynikiTabelaryczne);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.mpBTNWynikWykres);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.mpCMBAlgorytmySortowania);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.mpTXTKolorLinii);
             this.Controls.Add(this.mpTXTRozmiar);
             this.Controls.Add(this.mpTXTDolnaGranica);
             this.Controls.Add(this.mpTXTGornaGranica);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.mpTXTGruboscLinii);
+            this.Controls.Add(this.mpTXTKolorTla);
             this.Controls.Add(this.mpTXTMinimalnaProbaBadawcza);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
@@ -396,6 +419,7 @@ namespace Formularze_nawigacja
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWynikow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpChartWykresKosztuCzasowego)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -418,22 +442,23 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button mpBTNWynikiTabelaryczne;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button mpBTNWynikWykres;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.ComboBox mpCMBAlgorytmySortowania;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox mpTXTKolorLinii;
         private System.Windows.Forms.TextBox mpTXTRozmiar;
         private System.Windows.Forms.TextBox mpTXTDolnaGranica;
         private System.Windows.Forms.TextBox mpTXTGornaGranica;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox mpTXTGruboscLinii;
+        private System.Windows.Forms.TextBox mpTXTKolorTla;
         private System.Windows.Forms.TextBox mpTXTMinimalnaProbaBadawcza;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView mpDGVTabelaWynikow;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button mpBTNPowrotDoPulpitu;
+        private System.Windows.Forms.DataVisualization.Charting.Chart mpChartWykresKosztuCzasowego;
     }
 }
