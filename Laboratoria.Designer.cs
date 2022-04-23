@@ -255,6 +255,11 @@ namespace Formularze_nawigacja
             // mpCMBAlgorytmySortowania
             // 
             this.mpCMBAlgorytmySortowania.FormattingEnabled = true;
+            this.mpCMBAlgorytmySortowania.Items.AddRange(new object[] {
+            "Select Sort",
+            "Insertion Sort",
+            "Quick Sort",
+            "Bubble Sort"});
             this.mpCMBAlgorytmySortowania.Location = new System.Drawing.Point(57, 584);
             this.mpCMBAlgorytmySortowania.Name = "mpCMBAlgorytmySortowania";
             this.mpCMBAlgorytmySortowania.Size = new System.Drawing.Size(132, 27);

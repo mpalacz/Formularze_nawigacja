@@ -39,7 +39,7 @@ namespace Formularze_nawigacja
             this.mpDGVTableWyników = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.mpTXTRozmiarTablicy = new System.Windows.Forms.TextBox();
+            this.mpTXTMaxRozmiarTablicy = new System.Windows.Forms.TextBox();
             this.mpTXTProbaBadawcza = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -140,10 +140,10 @@ namespace Formularze_nawigacja
             // 
             // mpTXTRozmiarTablicy
             // 
-            this.mpTXTRozmiarTablicy.Location = new System.Drawing.Point(1056, 65);
-            this.mpTXTRozmiarTablicy.Name = "mpTXTRozmiarTablicy";
-            this.mpTXTRozmiarTablicy.Size = new System.Drawing.Size(98, 26);
-            this.mpTXTRozmiarTablicy.TabIndex = 9;
+            this.mpTXTMaxRozmiarTablicy.Location = new System.Drawing.Point(1056, 65);
+            this.mpTXTMaxRozmiarTablicy.Name = "mpTXTRozmiarTablicy";
+            this.mpTXTMaxRozmiarTablicy.Size = new System.Drawing.Size(98, 26);
+            this.mpTXTMaxRozmiarTablicy.TabIndex = 9;
             // 
             // mpTXTProbaBadawcza
             // 
@@ -190,7 +190,7 @@ namespace Formularze_nawigacja
             this.Controls.Add(this.mpTXTMaxWielkoscElementowTablicy);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.mpTXTProbaBadawcza);
-            this.Controls.Add(this.mpTXTRozmiarTablicy);
+            this.Controls.Add(this.mpTXTMaxRozmiarTablicy);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mpDGVTableWyników);
@@ -223,7 +223,7 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.DataGridView mpDGVTableWyników;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox mpTXTRozmiarTablicy;
+        private System.Windows.Forms.TextBox mpTXTMaxRozmiarTablicy;
         private System.Windows.Forms.TextBox mpTXTProbaBadawcza;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

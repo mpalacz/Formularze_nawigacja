@@ -12,6 +12,10 @@ namespace Formularze_nawigacja
 {
     public partial class ProjektNr2_Palacz53262 : Form
     {
+        // zadeklarowanie tablicy, która zostanie posortowana za pomocą algorytmu Merge Sort
+        string[] mpTMergeSort;
+        // zadeklarowanie tablicy, która zostanie posortowana za pomocą algorytmu Bucket Sort
+        string[] mpTBucketSort;
         public ProjektNr2_Palacz53262()
         {
             InitializeComponent();
@@ -48,11 +52,12 @@ namespace Formularze_nawigacja
         private void mpBTNWynikiTabelarycznie_Click(object sender, EventArgs e)
         {
             mpErrorProvider1.Clear(); // wyczyszczenie błędów wyświetlanych przez kontrolkę errorProvider
-            ushort mpLicznik = 0; // licznik operacji dominujących
-            ushort mpRozmiarTablicy; // wczytanie zormiaru tablicy
-            if(!ushort.TryParse(mpTXTRozmiarTablicy.Text,out mpRozmiarTablicy))
+            ushort mpLicznikMergeSort = 0; // licznik operacji dominujących algorytmu MergeSort
+            ushort mpLicznikBucketSort = 0; // licznik operacji dominujących algorytmu BucketSort
+            ushort mpMaxRozmiarTablicy; // wczytanie zormiaru tablicy
+            if(!ushort.TryParse(mpTXTMaxRozmiarTablicy.Text,out mpMaxRozmiarTablicy))
             {
-                mpErrorProvider1.SetError(mpTXTRozmiarTablicy, "Proszę wpisać liczbę naturalną");
+                mpErrorProvider1.SetError(mpTXTMaxRozmiarTablicy, "Proszę wpisać liczbę naturalną");
                 return;
             }
             ushort mpProbaBadawcza; // wczytanie próby badawczej
@@ -67,7 +72,31 @@ namespace Formularze_nawigacja
                 mpErrorProvider1.SetError(mpTXTMaxWielkoscElementowTablicy, "Proszę wpisać liczbę naturalną");
                 return;
             }
-            string[] mpT = mpGeneratorTablicString(mpRozmiarTablicy, mpMaxRozmiarElementowTablic);
+            // deklaracja tablic do przechowywania średnich ilości wykonanych operacji dominująch
+            ushort[] mpDaneZPomiaruMergeSort=new ushort[mpMaxRozmiarTablicy];
+            ushort[] mpDaneZPomiaruBucketSort = new ushort[mpMaxRozmiarTablicy];
+            // deklaracja talic do przechowywania kosztów czasowych wykonywania algorytmów
+            ushort[] mpWynikiAnalityczneMergeSort=new ushort[mpMaxRozmiarTablicy];
+            ushort[] mpWynikiAnalityczneBucketSort = new ushort[mpMaxRozmiarTablicy];
+            // przeprowadznie eksperymentu dla każdego rozmiaru tablicy
+            for (ushort mpI=1; mpI<mpMaxRozmiarTablicy; mpI++)
+            {
+                // wykonywanie eksperytmentu w ilości podanej próby badawczej
+                for(ushort mpJ=1; mpJ < mpProbaBadawcza; mpJ++)
+                {
+                    // generowanie tablic do sortowania 
+                    mpTMergeSort = mpGeneratorTablicString(mpI, mpMaxRozmiarElementowTablic);
+                    mpTBucketSort = mpGeneratorTablicString(mpI, mpMaxRozmiarElementowTablic);
+                    // sortowanie tablic i aktualizacja liczników operacji dominujących
+                    mpLicznikMergeSort += (ushort)MPAlgorytmySortowania.mpMergeSortProjekt(ref mpTMergeSort, 0, mpI);
+                    mpLicznikBucketSort += (ushort)MPAlgorytmySortowania.mpBucketSortProjekt(ref mpTBucketSort, mpI);
+                }
+                // przechowanie średnich ilości opercji dominujących w talicach z danymi z pomiaru
+                mpDaneZPomiaruMergeSort[mpI] = (ushort)(mpLicznikMergeSort / mpProbaBadawcza);
+                mpDaneZPomiaruBucketSort[mpI] = (ushort)(mpLicznikBucketSort / mpProbaBadawcza);
+                // przechowanie kosztu czasowego w tablicy
+
+            }
         }
     }
 }
