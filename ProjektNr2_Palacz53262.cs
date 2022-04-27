@@ -49,40 +49,52 @@ namespace Formularze_nawigacja
             return mpTablicaStringów;
         }
 
-        private void mpBTNWynikiTabelarycznie_Click(object sender, EventArgs e)
+        private void mpPobieranieDanych(out ushort mpMaxRozmiarTablicy, out ushort mpProbaBadawcza, out ushort mpMaxRozmiarElementowTablic)
         {
-            mpErrorProvider1.Clear(); // wyczyszczenie błędów wyświetlanych przez kontrolkę errorProvider
-            ushort mpLicznikMergeSort = 0; // licznik operacji dominujących algorytmu MergeSort
-            ushort mpLicznikBucketSort = 0; // licznik operacji dominujących algorytmu BucketSort
-            ushort mpMaxRozmiarTablicy; // wczytanie zormiaru tablicy
-            if(!ushort.TryParse(mpTXTMaxRozmiarTablicy.Text,out mpMaxRozmiarTablicy))
+            mpMaxRozmiarTablicy = 0;
+            mpProbaBadawcza = 0;
+            mpMaxRozmiarElementowTablic = 0;
+            // wczytanie zormiaru tablicy
+            if (!ushort.TryParse(mpTXTMaxRozmiarTablicy.Text, out mpMaxRozmiarTablicy))
             {
                 mpErrorProvider1.SetError(mpTXTMaxRozmiarTablicy, "Proszę wpisać liczbę naturalną");
                 return;
             }
-            ushort mpProbaBadawcza; // wczytanie próby badawczej
-            if(!ushort.TryParse(mpTXTProbaBadawcza.Text,out mpProbaBadawcza))
+            // wczytanie próby badawczej
+            if (!ushort.TryParse(mpTXTProbaBadawcza.Text, out mpProbaBadawcza))
             {
                 mpErrorProvider1.SetError(mpTXTProbaBadawcza, "Proszę wpisać liczbę naturalną");
                 return;
             }
-            ushort mpMaxRozmiarElementowTablic; // pobranie maksymalnego rozmiaru elementów tablicy
+            // pobranie maksymalnego rozmiaru elementów tablicy
             if (!ushort.TryParse(mpTXTMaxWielkoscElementowTablicy.Text, out mpMaxRozmiarElementowTablic))
             {
                 mpErrorProvider1.SetError(mpTXTMaxWielkoscElementowTablicy, "Proszę wpisać liczbę naturalną");
                 return;
             }
+        }
+
+        private void mpSortowanie(out ushort mpMaxRozmiarTablicy, out ushort[] mpDaneZPomiaruMergeSort, out ushort[] mpDaneZPomiaruBucketSort, out ushort[] mpWynikiAnalityczneMergeSort,
+            out ushort[] mpWynikiAnalityczneBucketSort, out ushort[] mpWynikiKosztuPamieciMergeSort, out ushort[] mpWynikiKosztuPamieciBucketSort)
+        {
+            mpErrorProvider1.Clear(); // wyczyszczenie błędów wyświetlanych przez kontrolkę errorProvider
+            ushort mpLicznikMergeSort = 0; // licznik operacji dominujących algorytmu MergeSort
+            ushort mpLicznikBucketSort = 0; // licznik operacji dominujących algorytmu BucketSort
+            mpPobieranieDanych(out mpMaxRozmiarTablicy, out ushort mpProbaBadawcza, out ushort mpMaxRozmiarElementowTablic);
             // deklaracja tablic do przechowywania średnich ilości wykonanych operacji dominująch
-            ushort[] mpDaneZPomiaruMergeSort=new ushort[mpMaxRozmiarTablicy];
-            ushort[] mpDaneZPomiaruBucketSort = new ushort[mpMaxRozmiarTablicy];
+            mpDaneZPomiaruMergeSort = new ushort[mpMaxRozmiarTablicy];
+            mpDaneZPomiaruBucketSort = new ushort[mpMaxRozmiarTablicy];
             // deklaracja talic do przechowywania kosztów czasowych wykonywania algorytmów
-            ushort[] mpWynikiAnalityczneMergeSort=new ushort[mpMaxRozmiarTablicy];
-            ushort[] mpWynikiAnalityczneBucketSort = new ushort[mpMaxRozmiarTablicy];
+            mpWynikiAnalityczneMergeSort = new ushort[mpMaxRozmiarTablicy];
+            mpWynikiAnalityczneBucketSort = new ushort[mpMaxRozmiarTablicy];
+            // deklaracja tablic do przechowywania kosztów pamięci wykonanych algorytmów
+            mpWynikiKosztuPamieciMergeSort = new ushort[mpMaxRozmiarTablicy];
+            mpWynikiKosztuPamieciBucketSort = new ushort[mpMaxRozmiarTablicy];
             // przeprowadznie eksperymentu dla każdego rozmiaru tablicy
-            for (ushort mpI=1; mpI<mpMaxRozmiarTablicy; mpI++)
+            for (ushort mpI = 1; mpI < mpMaxRozmiarTablicy; mpI++)
             {
                 // wykonywanie eksperytmentu w ilości podanej próby badawczej
-                for(ushort mpJ=1; mpJ < mpProbaBadawcza; mpJ++)
+                for (ushort mpJ = 1; mpJ < mpProbaBadawcza; mpJ++)
                 {
                     // generowanie tablic do sortowania 
                     mpTMergeSort = mpGeneratorTablicString(mpI, mpMaxRozmiarElementowTablic);
@@ -95,8 +107,28 @@ namespace Formularze_nawigacja
                 mpDaneZPomiaruMergeSort[mpI] = (ushort)(mpLicznikMergeSort / mpProbaBadawcza);
                 mpDaneZPomiaruBucketSort[mpI] = (ushort)(mpLicznikBucketSort / mpProbaBadawcza);
                 // przechowanie kosztu czasowego w tablicy
-
+                mpWynikiAnalityczneMergeSort[mpI] = (ushort)(mpI * Math.Log(mpI));
+                mpWynikiAnalityczneBucketSort[mpI] = mpI;
             }
+        }
+
+        private void mpBTNWynikiTabelarycznie_Click(object sender, EventArgs e)
+        {
+            mpSortowanie(out ushort mpMaxRozmiarTablicy, out ushort[] mpDaneZPomiaruMergeSort, out ushort[] mpDaneZPomiaruBucketSort, out ushort[] mpWynikiAnalityczneMergeSort
+            , out ushort[] mpWynikiAnalityczneBucketSort, out ushort[] mpWynikiKosztuPamieciMerseSort, out ushort[] mpWynikiKosztuPamieciBucketSort);
+            mpDGVTableWyników.Rows.Clear();
+            for(ushort mpI=0;mpI< mpMaxRozmiarTablicy; mpI++)
+            {
+                mpDGVTableWyników.Rows.Add();
+                mpDGVTableWyników.Rows[mpI].Cells[0].Value = mpI;
+                mpDGVTableWyników.Rows[mpI].Cells[1].Value = mpDaneZPomiaruMergeSort[mpI];
+                mpDGVTableWyników.Rows[mpI].Cells[2].Value=mpDaneZPomiaruBucketSort[mpI];
+                mpDGVTableWyników.Rows[mpI].Cells[3].Value = mpWynikiAnalityczneMergeSort[mpI];
+                mpDGVTableWyników.Rows[mpI].Cells[4].Value = mpWynikiAnalityczneBucketSort[mpI];
+                mpDGVTableWyników.Rows[mpI].Cells[5].Value = mpWynikiKosztuPamieciMerseSort[mpI];
+                mpDGVTableWyników.Rows[mpI].Cells[6].Value = mpWynikiKosztuPamieciBucketSort[mpI];
+            }
+            mpDGVTableWyników.Visible = true;
         }
     }
 }
