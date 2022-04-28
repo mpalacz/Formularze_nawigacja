@@ -201,13 +201,25 @@ namespace Formularze_nawigacja
             mpDGVTabelaWyników.Visible = false;
             mpCHTWykresWynikow.Visible = true;
             mpGRBUstawieniaWykresu.Visible = true;
+
             // przesortowanie tablicy i wykonanie analizy algorytmów
             mpSortowanie(out ushort mpMaxRozmiarTablicy, out ushort[] mpDaneZPomiaruMergeSort, out ushort[] mpDaneZPomiaruBucketSort, out ushort[] mpWynikiAnalityczneMergeSort, 
                 out ushort[] mpWynikiAnalityczneBucketSort, out ushort[] mpWynikiKosztuPamieciMerseSort, out ushort[] mpWynikiKosztuPamieciBucketSort);
+
+            // utworzenie tablicy przechowującej rozmiary sortowanych tablic
+            int[] mpRozmiaryTablic = new int[mpMaxRozmiarTablicy];
+            for (ushort mpI = 0; mpI < mpMaxRozmiarTablicy; mpI++) mpRozmiaryTablic[mpI] = mpI;
+
             mpCHTWykresWynikow.Titles.Clear(); // usunięcie tytułów
             mpCHTWykresWynikow.Titles.Add("Złożonośc obliczeniowa algorytmów MergeSort i BucketSort"); // dodanie tytułu
-            mpCHTWykresWynikow.BackColor = mpBTNKolorTla.BackColor; // ustawienie koloru tła
 
+            mpCHTWykresWynikow.BackColor = mpBTNKolorTla.BackColor; // ustawienie koloru tła
+            mpCHTWykresWynikow.Legends["Legend1"].Docking = Docking.Bottom; // ustwaienie legendy pod wykresem
+            mpCHTWykresWynikow.Series.Clear(); // wyczyszczenie serii
+            mpCHTWykresWynikow.Series.Add("Koszt czasowy MergeSort"); // dodanie nowej serii
+            mpCHTWykresWynikow.Series[0].ChartType = SeriesChartType.Line; // ustawienie typu wykresu
+            mpCHTWykresWynikow.Series[0].Color = mpBTNKosztCzasowyMergeSortKolor.BackColor; // ustawienie koloru
+            mpCHTWykresWynikow.Series[0].BorderDashStyle = mpZmianaTypuLinii(mpCMBKosztCzasowyMergeSortRodzajLinii.SelectedIndex);
         }
     }
 }
