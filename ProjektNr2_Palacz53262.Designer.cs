@@ -33,11 +33,11 @@ namespace Formularze_nawigacja
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.button1 = new System.Windows.Forms.Button();
+            this.mpBTNWizualizacjaTablicyPoSortowaniu = new System.Windows.Forms.Button();
             this.mpBTNWynikiTabelarycznie = new System.Windows.Forms.Button();
             this.mpBTNWykreWynikow = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.mpBTNReset = new System.Windows.Forms.Button();
+            this.mpBTNDemo = new System.Windows.Forms.Button();
             this.mpBTNPowrot = new System.Windows.Forms.Button();
             this.mpDGVTabelaWyników = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,6 +51,13 @@ namespace Formularze_nawigacja
             this.mpCHTWykresWynikow = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.mpColorDialog1 = new System.Windows.Forms.ColorDialog();
             this.mpGRBUstawieniaWykresu = new System.Windows.Forms.GroupBox();
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
             this.mpCMBKosztPamieciowyBucketSortRodzajLinii = new System.Windows.Forms.ComboBox();
             this.mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii = new System.Windows.Forms.ComboBox();
             this.mpCMBKosztCzasowyBucketSortRodzajLinii = new System.Windows.Forms.ComboBox();
@@ -73,34 +80,27 @@ namespace Formularze_nawigacja
             this.label5 = new System.Windows.Forms.Label();
             this.mpBTNKolorTla = new System.Windows.Forms.Button();
             this.mpLBLKolorTla = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.mpNUDKosztCzasowyMergeSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
-            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
-            this.mpNUDKosztCzasowyBucketSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
-            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
-            this.mpNUDKosztPamieciowyBucketSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
-            this.mpNUDKosztPamieciowyMergeSortGruboscLinii = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWyników)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpCHTWykresWynikow)).BeginInit();
             this.mpGRBUstawieniaWykresu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyMergeSortGruboscLinii)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyBucketSortGruboscLinii)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztPamieciowyBucketSortGruboscLinii)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztPamieciowyMergeSortGruboscLinii)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztPamieciowyBucketSortGruboscLinii)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyBucketSortGruboscLinii)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyMergeSortGruboscLinii)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // mpBTNWizualizacjaTablicyPoSortowaniu
             // 
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(444, 595);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(210, 51);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Wizualizacja elementów tablicy po sortowaniu";
-            this.button1.UseVisualStyleBackColor = true;
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.Location = new System.Drawing.Point(444, 595);
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.Name = "mpBTNWizualizacjaTablicyPoSortowaniu";
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.Size = new System.Drawing.Size(210, 51);
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.TabIndex = 0;
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.Text = "Wizualizacja elementów tablicy po sortowaniu";
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.UseVisualStyleBackColor = true;
             // 
             // mpBTNWynikiTabelarycznie
             // 
@@ -124,30 +124,31 @@ namespace Formularze_nawigacja
             this.mpBTNWykreWynikow.UseVisualStyleBackColor = true;
             this.mpBTNWykreWynikow.Click += new System.EventHandler(this.mpBTNWykreWynikow_Click);
             // 
-            // button4
+            // mpBTNReset
             // 
-            this.button4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(660, 595);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 51);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Reset";
-            this.button4.UseVisualStyleBackColor = true;
+            this.mpBTNReset.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpBTNReset.Location = new System.Drawing.Point(660, 595);
+            this.mpBTNReset.Name = "mpBTNReset";
+            this.mpBTNReset.Size = new System.Drawing.Size(75, 51);
+            this.mpBTNReset.TabIndex = 3;
+            this.mpBTNReset.Text = "Reset";
+            this.mpBTNReset.UseVisualStyleBackColor = true;
+            this.mpBTNReset.Click += new System.EventHandler(this.mpBTNReset_Click);
             // 
-            // button5
+            // mpBTNDemo
             // 
-            this.button5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(741, 595);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 51);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Demo";
-            this.button5.UseVisualStyleBackColor = true;
+            this.mpBTNDemo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.mpBTNDemo.Location = new System.Drawing.Point(741, 595);
+            this.mpBTNDemo.Name = "mpBTNDemo";
+            this.mpBTNDemo.Size = new System.Drawing.Size(75, 51);
+            this.mpBTNDemo.TabIndex = 4;
+            this.mpBTNDemo.Text = "Demo";
+            this.mpBTNDemo.UseVisualStyleBackColor = true;
             // 
             // mpBTNPowrot
             // 
             this.mpBTNPowrot.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.mpBTNPowrot.Location = new System.Drawing.Point(989, 7);
+            this.mpBTNPowrot.Location = new System.Drawing.Point(1021, 7);
             this.mpBTNPowrot.Name = "mpBTNPowrot";
             this.mpBTNPowrot.Size = new System.Drawing.Size(141, 28);
             this.mpBTNPowrot.TabIndex = 5;
@@ -281,6 +282,117 @@ namespace Formularze_nawigacja
             this.mpGRBUstawieniaWykresu.TabStop = false;
             this.mpGRBUstawieniaWykresu.Text = "Ustawienie wykresu";
             this.mpGRBUstawieniaWykresu.Visible = false;
+            // 
+            // mpNUDKosztPamieciowyMergeSortGruboscLinii
+            // 
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Location = new System.Drawing.Point(43, 209);
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Name = "mpNUDKosztPamieciowyMergeSortGruboscLinii";
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.TabIndex = 28;
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // mpNUDKosztPamieciowyBucketSortGruboscLinii
+            // 
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Location = new System.Drawing.Point(43, 351);
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Name = "mpNUDKosztPamieciowyBucketSortGruboscLinii";
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.TabIndex = 27;
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii
+            // 
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Location = new System.Drawing.Point(43, 304);
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Name = "mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii";
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.TabIndex = 26;
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // mpNUDKosztCzasowyBucketSortGruboscLinii
+            // 
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Location = new System.Drawing.Point(43, 255);
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Name = "mpNUDKosztCzasowyBucketSortGruboscLinii";
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii.TabIndex = 25;
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii
+            // 
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Location = new System.Drawing.Point(43, 161);
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Name = "mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii";
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.TabIndex = 24;
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // mpNUDKosztCzasowyMergeSortGruboscLinii
+            // 
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Location = new System.Drawing.Point(43, 111);
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Name = "mpNUDKosztCzasowyMergeSortGruboscLinii";
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii.TabIndex = 23;
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(57, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(83, 19);
+            this.label13.TabIndex = 22;
+            this.label13.Text = "Grugość linii";
             // 
             // mpCMBKosztPamieciowyBucketSortRodzajLinii
             // 
@@ -523,117 +635,6 @@ namespace Formularze_nawigacja
             this.mpLBLKolorTla.TabIndex = 0;
             this.mpLBLKolorTla.Text = "Tło";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(57, 22);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(83, 19);
-            this.label13.TabIndex = 22;
-            this.label13.Text = "Grugość linii";
-            // 
-            // mpNUDKosztCzasowyMergeSortGruboscLinii
-            // 
-            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Location = new System.Drawing.Point(43, 111);
-            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Name = "mpNUDKosztCzasowyMergeSortGruboscLinii";
-            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
-            this.mpNUDKosztCzasowyMergeSortGruboscLinii.TabIndex = 23;
-            this.mpNUDKosztCzasowyMergeSortGruboscLinii.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii
-            // 
-            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Location = new System.Drawing.Point(43, 161);
-            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Name = "mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii";
-            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
-            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.TabIndex = 24;
-            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // mpNUDKosztCzasowyBucketSortGruboscLinii
-            // 
-            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Location = new System.Drawing.Point(43, 255);
-            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Name = "mpNUDKosztCzasowyBucketSortGruboscLinii";
-            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
-            this.mpNUDKosztCzasowyBucketSortGruboscLinii.TabIndex = 25;
-            this.mpNUDKosztCzasowyBucketSortGruboscLinii.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii
-            // 
-            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Location = new System.Drawing.Point(43, 304);
-            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Name = "mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii";
-            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
-            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.TabIndex = 26;
-            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // mpNUDKosztPamieciowyBucketSortGruboscLinii
-            // 
-            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Location = new System.Drawing.Point(43, 351);
-            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Name = "mpNUDKosztPamieciowyBucketSortGruboscLinii";
-            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
-            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.TabIndex = 27;
-            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // mpNUDKosztPamieciowyMergeSortGruboscLinii
-            // 
-            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Location = new System.Drawing.Point(43, 209);
-            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Name = "mpNUDKosztPamieciowyMergeSortGruboscLinii";
-            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Size = new System.Drawing.Size(59, 26);
-            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.TabIndex = 28;
-            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // ProjektNr2_Palacz53262
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -650,11 +651,11 @@ namespace Formularze_nawigacja
             this.Controls.Add(this.label1);
             this.Controls.Add(this.mpDGVTabelaWyników);
             this.Controls.Add(this.mpBTNPowrot);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.mpBTNDemo);
+            this.Controls.Add(this.mpBTNReset);
             this.Controls.Add(this.mpBTNWykreWynikow);
             this.Controls.Add(this.mpBTNWynikiTabelarycznie);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.mpBTNWizualizacjaTablicyPoSortowaniu);
             this.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ProjektNr2_Palacz53262";
@@ -665,12 +666,12 @@ namespace Formularze_nawigacja
             ((System.ComponentModel.ISupportInitialize)(this.mpCHTWykresWynikow)).EndInit();
             this.mpGRBUstawieniaWykresu.ResumeLayout(false);
             this.mpGRBUstawieniaWykresu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyMergeSortGruboscLinii)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyBucketSortGruboscLinii)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztPamieciowyBucketSortGruboscLinii)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztPamieciowyMergeSortGruboscLinii)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztPamieciowyBucketSortGruboscLinii)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyBucketSortGruboscLinii)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyMergeSortGruboscLinii)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -678,11 +679,11 @@ namespace Formularze_nawigacja
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button mpBTNWizualizacjaTablicyPoSortowaniu;
         private System.Windows.Forms.Button mpBTNWynikiTabelarycznie;
         private System.Windows.Forms.Button mpBTNWykreWynikow;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button mpBTNReset;
+        private System.Windows.Forms.Button mpBTNDemo;
         private System.Windows.Forms.Button mpBTNPowrot;
         private System.Windows.Forms.DataGridView mpDGVTabelaWyników;
         private System.Windows.Forms.Label label1;

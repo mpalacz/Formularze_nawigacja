@@ -274,5 +274,46 @@ namespace Formularze_nawigacja
             mpCHTWykresWynikow.Visible = true;
             mpGRBUstawieniaWykresu.Visible = true;
         }
+
+        private void mpBTNReset_Click(object sender, EventArgs e)
+        {
+            // wyczyszczenie kotrolki errorProvider
+            mpErrorProvider1.Clear();
+            // ustawienie ustawień początkowych dla typu linii 
+            mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.SelectedIndex = 0;
+            mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii.SelectedIndex = 0;
+            mpCMBKosztCzasowyBucketSortRodzajLinii.SelectedIndex = 1;
+            mpCMBKosztCzasowyMergeSortRodzajLinii.SelectedIndex = 1;
+            mpCMBKosztPamieciowyBucketSortRodzajLinii.SelectedIndex = 2;
+            mpCMBKosztPamieciowyMergeSortRodzajLinii.SelectedIndex = 2;
+            // ustawienie ustawień początkowych dla grubości linii
+            mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Value = 1;
+            mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Value = 1;
+            mpNUDKosztCzasowyBucketSortGruboscLinii.Value = 1;
+            mpNUDKosztCzasowyMergeSortGruboscLinii.Value = 1;
+            mpNUDKosztPamieciowyBucketSortGruboscLinii.Value = 1;
+            mpNUDKosztPamieciowyMergeSortGruboscLinii.Value = 1;
+            // ustawienie ustawień początkowychdla koloru linii
+            mpBTNKolorTla.BackColor = Color.White;
+            mpBTNKosztCzasowyBucketSortKolor.BackColor = Color.Green;
+            mpBTNKosztCzasowyMergeSortKolor.BackColor = Color.Red;
+            mpBTNKosztPamieciowyMergeSortKolor.BackColor = Color.Blue;
+            mpBTNKosztPamieciowyBucketSortKolor.BackColor = Color.Yellow;
+            mpBTNAnalitycznyKosztCzasowyMergeSortKolor.BackColor = Color.Orange;
+            mpBTNAnalitycznyKosztCzasowyBucketSortKolor.BackColor = Color.Purple;
+            // wyczyszczenie kontrolki chart
+            mpCHTWykresWynikow.Series.Clear();
+            mpCHTWykresWynikow.Titles.Clear();
+            // wyczyszczenie kontrolki DataGridView
+            mpDGVTabelaWyników.Rows.Clear();
+            // ukrycie kontrolek
+            mpDGVTabelaWyników.Visible = false;
+            mpCHTWykresWynikow.Visible = false;
+            mpGRBUstawieniaWykresu.Visible = false;
+            // wyczyszczenie kontrolek textBox
+            mpTXTMaxRozmiarTablicy.Text = null;
+            mpTXTMaxWielkoscElementowTablicy.Text = null;
+            mpTXTProbaBadawcza.Text = null;
+        }
     }
 }
