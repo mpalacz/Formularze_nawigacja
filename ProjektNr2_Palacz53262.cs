@@ -108,7 +108,7 @@ namespace Formularze_nawigacja
                 {
                     // generowanie tablic do sortowania 
                     mpTMergeSort = mpGeneratorTablicString(mpI, mpMaxRozmiarElementowTablic);
-                    mpTBucketSort = mpGeneratorTablicString(mpI, mpMaxRozmiarElementowTablic);
+                    mpTBucketSort = mpTMergeSort;
                     // sortowanie tablic i aktualizacja liczników operacji dominujących
                     mpLicznikMergeSort += (ushort)MPAlgorytmySortowania.mpMergeSortProjekt(ref mpTMergeSort, 0, mpI);
                     mpLicznikBucketSort += (ushort)MPAlgorytmySortowania.mpBucketSortProjekt(ref mpTBucketSort, mpI);
@@ -146,6 +146,8 @@ namespace Formularze_nawigacja
             // schowanie kontrolki chart i groupBox
             mpCHTWykresWynikow.Visible = false;
             mpGRBUstawieniaWykresu.Visible = false;
+            // odblokowanie mpBTNWizualizacjaTablicyPoSortowaniu
+            mpBTNWizualizacjaTablicyPoSortowaniu.Enabled = true;
         }
 
         // funkcje zmieniające kolor poszczególnych elementów wykresu
@@ -273,6 +275,8 @@ namespace Formularze_nawigacja
             mpDGVTabelaWyników.Visible = false;
             mpCHTWykresWynikow.Visible = true;
             mpGRBUstawieniaWykresu.Visible = true;
+            // odblokowanie mpBTNWizualizacjaTablicyPoSortowaniu
+            mpBTNWizualizacjaTablicyPoSortowaniu.Enabled = true;
         }
 
         private void mpBTNReset_Click(object sender, EventArgs e)
@@ -314,6 +318,28 @@ namespace Formularze_nawigacja
             mpTXTMaxRozmiarTablicy.Text = null;
             mpTXTMaxWielkoscElementowTablicy.Text = null;
             mpTXTProbaBadawcza.Text = null;
+            // zablokowanie mpBTNWizualizacjaTablicyPoSortowaniu
+            mpBTNWizualizacjaTablicyPoSortowaniu.Enabled = false;
+        }
+
+        private void mpBTNWizualizacjaTablicyPoSortowaniu_Click(object sender, EventArgs e)
+        {
+            mpDGVPoSortowaniu.Rows.Clear(); // wyczyszcznie wierszy
+            // iterowanie przez elementy tablic
+            for (ushort mpI = 0; mpI < mpTMergeSort.Length; mpI++)
+            {
+                mpDGVPoSortowaniu.Rows.Add(); // dodanie wiersza
+                // wpisanie wartości do komurek
+                mpDGVPoSortowaniu.Rows[mpI].Cells[0].Value = mpI;
+                mpDGVPoSortowaniu.Rows[mpI].Cells[1].Value=mpTMergeSort[mpI];
+                mpDGVPoSortowaniu.Rows[mpI].Cells[2].Value = mpTBucketSort[mpI];
+            }
+            // ukrycie kontrolek pokazujących wyniki analizy sortowania
+            mpCHTWykresWynikow.Visible = false;
+            mpDGVTabelaWyników.Visible=false;
+            mpGRBUstawieniaWykresu.Visible=false;
+            // wyświetlenie kontrolki mpDGVPoSortowaniu
+            mpDGVPoSortowaniu.Visible=true;
         }
     }
 }

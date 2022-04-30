@@ -80,6 +80,7 @@ namespace Formularze_nawigacja
             this.label5 = new System.Windows.Forms.Label();
             this.mpBTNKolorTla = new System.Windows.Forms.Button();
             this.mpLBLKolorTla = new System.Windows.Forms.Label();
+            this.mpDGVPoSortowaniu = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWyników)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpCHTWykresWynikow)).BeginInit();
@@ -90,6 +91,7 @@ namespace Formularze_nawigacja
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyBucketSortGruboscLinii)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyMergeSortGruboscLinii)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpDGVPoSortowaniu)).BeginInit();
             this.SuspendLayout();
             // 
             // mpBTNWizualizacjaTablicyPoSortowaniu
@@ -101,6 +103,7 @@ namespace Formularze_nawigacja
             this.mpBTNWizualizacjaTablicyPoSortowaniu.TabIndex = 0;
             this.mpBTNWizualizacjaTablicyPoSortowaniu.Text = "Wizualizacja elementów tablicy po sortowaniu";
             this.mpBTNWizualizacjaTablicyPoSortowaniu.UseVisualStyleBackColor = true;
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.Click += new System.EventHandler(this.mpBTNWizualizacjaTablicyPoSortowaniu_Click);
             // 
             // mpBTNWynikiTabelarycznie
             // 
@@ -635,11 +638,21 @@ namespace Formularze_nawigacja
             this.mpLBLKolorTla.TabIndex = 0;
             this.mpLBLKolorTla.Text = "Tło";
             // 
+            // mpDGVPoSortowaniu
+            // 
+            this.mpDGVPoSortowaniu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mpDGVPoSortowaniu.Location = new System.Drawing.Point(12, 41);
+            this.mpDGVPoSortowaniu.Name = "mpDGVPoSortowaniu";
+            this.mpDGVPoSortowaniu.Size = new System.Drawing.Size(804, 548);
+            this.mpDGVPoSortowaniu.TabIndex = 16;
+            this.mpDGVPoSortowaniu.Visible = false;
+            // 
             // ProjektNr2_Palacz53262
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1174, 658);
+            this.Controls.Add(this.mpDGVPoSortowaniu);
             this.Controls.Add(this.mpGRBUstawieniaWykresu);
             this.Controls.Add(this.mpCHTWykresWynikow);
             this.Controls.Add(this.label4);
@@ -672,6 +685,7 @@ namespace Formularze_nawigacja
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyBucketSortGruboscLinii)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpNUDKosztCzasowyMergeSortGruboscLinii)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mpDGVPoSortowaniu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -726,5 +740,6 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.NumericUpDown mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii;
         private System.Windows.Forms.NumericUpDown mpNUDKosztCzasowyMergeSortGruboscLinii;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView mpDGVPoSortowaniu;
     }
 }

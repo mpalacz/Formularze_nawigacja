@@ -340,5 +340,10 @@ namespace Formularze_nawigacja
             // pokazanie kontrolki Chart
             mpChartWykresKosztuCzasowego.Visible = true;
         }
+
+        private void mpBTNPoSortowaniu_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

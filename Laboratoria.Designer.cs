@@ -30,9 +30,9 @@ namespace Formularze_nawigacja
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mpBTNPoSortowaniu = new System.Windows.Forms.Button();
             this.mpErrorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -74,6 +74,7 @@ namespace Formularze_nawigacja
             // 
             // mpBTNPoSortowaniu
             // 
+            this.mpBTNPoSortowaniu.Enabled = false;
             this.mpBTNPoSortowaniu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.mpBTNPoSortowaniu.Location = new System.Drawing.Point(452, 596);
             this.mpBTNPoSortowaniu.Name = "mpBTNPoSortowaniu";
@@ -81,6 +82,7 @@ namespace Formularze_nawigacja
             this.mpBTNPoSortowaniu.TabIndex = 0;
             this.mpBTNPoSortowaniu.Text = "Wizualizacja tablicy po sortowaniu";
             this.mpBTNPoSortowaniu.UseVisualStyleBackColor = true;
+            this.mpBTNPoSortowaniu.Click += new System.EventHandler(this.mpBTNPoSortowaniu_Click);
             // 
             // mpErrorProvider1
             // 
@@ -363,16 +365,16 @@ namespace Formularze_nawigacja
             // 
             // mpChartWykresKosztuCzasowego
             // 
-            chartArea1.Name = "ChartArea1";
-            this.mpChartWykresKosztuCzasowego.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.mpChartWykresKosztuCzasowego.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.mpChartWykresKosztuCzasowego.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.mpChartWykresKosztuCzasowego.Legends.Add(legend2);
             this.mpChartWykresKosztuCzasowego.Location = new System.Drawing.Point(284, 152);
             this.mpChartWykresKosztuCzasowego.Name = "mpChartWykresKosztuCzasowego";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.mpChartWykresKosztuCzasowego.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.mpChartWykresKosztuCzasowego.Series.Add(series2);
             this.mpChartWykresKosztuCzasowego.Size = new System.Drawing.Size(673, 419);
             this.mpChartWykresKosztuCzasowego.TabIndex = 31;
             this.mpChartWykresKosztuCzasowego.Visible = false;
