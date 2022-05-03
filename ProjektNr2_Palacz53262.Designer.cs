@@ -599,7 +599,7 @@ namespace Formularze_nawigacja
             this.mpBTNKosztCzasowyMergeSortKolor.Size = new System.Drawing.Size(27, 27);
             this.mpBTNKosztCzasowyMergeSortKolor.TabIndex = 4;
             this.mpBTNKosztCzasowyMergeSortKolor.UseVisualStyleBackColor = false;
-            this.mpBTNKosztCzasowyMergeSortKolor.Click += new System.EventHandler(this.mpBTNKosztCzasowyMergeSortKolor_Click_1);
+            this.mpBTNKosztCzasowyMergeSortKolor.Click += new System.EventHandler(this.mpBTNKosztCzasowyMergeSortKolor_Click);
             // 
             // label6
             // 

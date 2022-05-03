@@ -57,40 +57,60 @@ namespace Formularze_nawigacja
             return mpTablicaStringów;
         }
 
-        private bool mpPobieranieDanych(out ushort mpMaxRozmiarTablicy, out ushort mpProbaBadawcza, out ushort mpMaxRozmiarElementowTablic)
+
+        private bool mpSortowanie(out ushort mpMaxRozmiarTablicy, out ushort[] mpDaneZPomiaruMergeSort, out ushort[] mpDaneZPomiaruBucketSort, out ushort[] mpWynikiAnalityczneMergeSort,
+            out ushort[] mpWynikiAnalityczneBucketSort, out ushort[] mpWynikiKosztuPamieciowegoMergeSort, out ushort[] mpWynikiKosztuPamieciowegoBucketSort)
         {
-            mpProbaBadawcza = 0;
-            mpMaxRozmiarElementowTablic = 0;
+            bool mpCzyPoprawneDane = true;
+            mpErrorProvider1.Clear(); // wyczyszczenie błędów wyświetlanych przez kontrolkę errorProvider
+            ushort mpLicznikMergeSort = 0; // licznik operacji dominujących algorytmu MergeSort
+            ushort mpLicznikBucketSort = 0; // licznik operacji dominujących algorytmu BucketSort
             // wczytanie zormiaru tablicy
             if (!ushort.TryParse(mpTXTMaxRozmiarTablicy.Text, out mpMaxRozmiarTablicy))
             {
                 mpErrorProvider1.SetError(mpTXTMaxRozmiarTablicy, "Proszę wpisać liczbę naturalną");
-                return false;
+                mpCzyPoprawneDane = false;
             }
             // wczytanie próby badawczej
-            if (!ushort.TryParse(mpTXTProbaBadawcza.Text, out mpProbaBadawcza))
+            if (!ushort.TryParse(mpTXTProbaBadawcza.Text, out ushort mpProbaBadawcza))
             {
                 mpErrorProvider1.SetError(mpTXTProbaBadawcza, "Proszę wpisać liczbę naturalną");
-                return false;
+                mpCzyPoprawneDane = false;
             }
             // pobranie maksymalnego rozmiaru elementów tablicy
-            if (!ushort.TryParse(mpTXTMaxWielkoscElementowTablicy.Text, out mpMaxRozmiarElementowTablic))
+            if (!ushort.TryParse(mpTXTMaxWielkoscElementowTablicy.Text, out ushort mpMaxRozmiarElementowTablic))
             {
                 mpErrorProvider1.SetError(mpTXTMaxWielkoscElementowTablicy, "Proszę wpisać liczbę naturalną");
+                mpCzyPoprawneDane = false;
+            }
+            // sprawdzenie czy wczytane dane są równe od zera
+            if (mpMaxRozmiarTablicy == 0)
+            {
+                mpErrorProvider1.SetError(mpTXTMaxRozmiarTablicy, "Wartość musi być większa od 0");
+                mpCzyPoprawneDane = false;
+            }
+            if (mpProbaBadawcza == 0)
+            {
+                mpErrorProvider1.SetError(mpTXTProbaBadawcza, "Wartość musi być większa od 0");
+                mpCzyPoprawneDane = false;
+            }
+            if (mpMaxRozmiarElementowTablic == 0)
+            {
+                mpErrorProvider1.SetError(mpTXTMaxWielkoscElementowTablicy, "Wartość musi być większa od 0");
+                mpCzyPoprawneDane = false;
+            }
+            // jeśli dane są niepoprawne, wynikom przypisuje się wartości 0 lub null i zwracana jest wartość false
+            if (!mpCzyPoprawneDane)
+            {
+                mpMaxRozmiarTablicy = 0;
+                mpDaneZPomiaruBucketSort = null;
+                mpDaneZPomiaruMergeSort = null;
+                mpWynikiAnalityczneBucketSort = null;
+                mpWynikiAnalityczneMergeSort=null;
+                mpWynikiKosztuPamieciowegoBucketSort = null;
+                mpWynikiKosztuPamieciowegoMergeSort = null;
                 return false;
             }
-            return true;
-        }
-
-        private bool mpSortowanie(out ushort mpMaxRozmiarTablicy, out ushort[] mpDaneZPomiaruMergeSort, out ushort[] mpDaneZPomiaruBucketSort, out ushort[] mpWynikiAnalityczneMergeSort,
-            out ushort[] mpWynikiAnalityczneBucketSort, out ushort[] mpWynikiKosztuPamieciMergeSort, out ushort[] mpWynikiKosztuPamieciBucketSort)
-        {
-            bool czyPorpawneDane = true; // zmienna przechowująca informację czy pobrane dane są poprawne
-            mpErrorProvider1.Clear(); // wyczyszczenie błędów wyświetlanych przez kontrolkę errorProvider
-            ushort mpLicznikMergeSort = 0; // licznik operacji dominujących algorytmu MergeSort
-            ushort mpLicznikBucketSort = 0; // licznik operacji dominujących algorytmu BucketSort
-            if (!mpPobieranieDanych(out mpMaxRozmiarTablicy, out ushort mpProbaBadawcza, out ushort mpMaxRozmiarElementowTablic))
-                czyPorpawneDane = false;
             // deklaracja tablic do przechowywania średnich ilości wykonanych operacji dominująch
             mpDaneZPomiaruMergeSort = new ushort[mpMaxRozmiarTablicy];
             mpDaneZPomiaruBucketSort = new ushort[mpMaxRozmiarTablicy];
@@ -98,8 +118,8 @@ namespace Formularze_nawigacja
             mpWynikiAnalityczneMergeSort = new ushort[mpMaxRozmiarTablicy];
             mpWynikiAnalityczneBucketSort = new ushort[mpMaxRozmiarTablicy];
             // deklaracja tablic do przechowywania kosztów pamięci wykonanych algorytmów
-            mpWynikiKosztuPamieciMergeSort = new ushort[mpMaxRozmiarTablicy];
-            mpWynikiKosztuPamieciBucketSort = new ushort[mpMaxRozmiarTablicy];
+            mpWynikiKosztuPamieciowegoMergeSort = new ushort[mpMaxRozmiarTablicy];
+            mpWynikiKosztuPamieciowegoBucketSort = new ushort[mpMaxRozmiarTablicy];
             // przeprowadznie eksperymentu dla każdego rozmiaru tablicy
             for (ushort mpI = 1; mpI < mpMaxRozmiarTablicy; mpI++)
             {
@@ -117,10 +137,13 @@ namespace Formularze_nawigacja
                 mpDaneZPomiaruMergeSort[mpI] = (ushort)(mpLicznikMergeSort / mpProbaBadawcza);
                 mpDaneZPomiaruBucketSort[mpI] = (ushort)(mpLicznikBucketSort / mpProbaBadawcza);
                 // przechowanie kosztu czasowego w tablicy
-                mpWynikiAnalityczneMergeSort[mpI] = (ushort)(mpI * Math.Log(mpI));
+                mpWynikiAnalityczneMergeSort[mpI] = (ushort)(mpI * (Math.Log(mpI) / Math.Log(2) + 1) + mpI);
                 mpWynikiAnalityczneBucketSort[mpI] = mpI;
+                // przechowanie kosztu pamięciowego algorytmów
+                mpWynikiKosztuPamieciowegoMergeSort[mpI] = (ushort)(Math.Log(mpI)/Math.Log(2)+mpI);
+                mpWynikiKosztuPamieciowegoBucketSort[mpI] = 0;
             }
-            return czyPorpawneDane;
+            return true;
         }
 
         private void mpBTNWynikiTabelarycznie_Click(object sender, EventArgs e)
@@ -153,43 +176,51 @@ namespace Formularze_nawigacja
         // funkcje zmieniające kolor poszczególnych elementów wykresu
         private void mpBTNKosztCzasowyMergeSortKolor_Click(object sender, EventArgs e)
         {
-            mpBTNKosztCzasowyMergeSortKolor.BackColor = mpColorDialog1.Color;
+            Color mpWybranyKolor = mpColorDialog1.Color;
+            mpBTNKosztCzasowyMergeSortKolor.BackColor = mpWybranyKolor;
+            mpCHTWykresWynikow.Series[0].Color= mpWybranyKolor;
         }
 
         private void mpBTNKolorTla_Click(object sender, EventArgs e)
         {
-            mpBTNKolorTla.BackColor = mpColorDialog1.Color;
-        }
-
-        private void mpBTNKosztCzasowyMergeSortKolor_Click_1(object sender, EventArgs e)
-        {
-            mpBTNKosztCzasowyMergeSortKolor.BackColor = mpColorDialog1.Color;
+            Color mpWybranyKolor = mpColorDialog1.Color;
+            mpBTNKolorTla.BackColor = mpWybranyKolor;
+            mpCHTWykresWynikow.BackColor= mpWybranyKolor;
         }
 
         private void mpBTNAnalitycznyKosztCzasowyMergeSortKolor_Click(object sender, EventArgs e)
         {
-            mpBTNAnalitycznyKosztCzasowyMergeSortKolor.BackColor = mpColorDialog1.Color;
+            Color mpWybranyKolor = mpColorDialog1.Color;
+            mpBTNAnalitycznyKosztCzasowyMergeSortKolor.BackColor = mpWybranyKolor;
+            mpCHTWykresWynikow.Series[1].Color= mpWybranyKolor;
         }
 
         private void mpBTNKosztPamieciowyMergeSortKolor_Click(object sender, EventArgs e)
         {
-            mpBTNKosztPamieciowyMergeSortKolor.BackColor = mpColorDialog1.Color;
+            Color mpWybranyKolor = mpColorDialog1.Color;
+            mpBTNKosztPamieciowyMergeSortKolor.BackColor = mpWybranyKolor;
+            mpCHTWykresWynikow.Series[2].Color= mpWybranyKolor;
         }
 
         private void mpBTNKosztCzasowyBucketSortKolor_Click(object sender, EventArgs e)
         {
-            mpBTNKosztCzasowyBucketSortKolor.BackColor = mpColorDialog1.Color;
+            Color mpWybranyKolor = mpColorDialog1.Color;
+            mpBTNKosztCzasowyBucketSortKolor.BackColor = mpWybranyKolor;
+            mpCHTWykresWynikow.Series[3].Color= mpWybranyKolor;
         }
 
         private void mpBTNAnalitycznyKosztCzasowyBucketSortKolor_Click(object sender, EventArgs e)
         {
-            mpBTNAnalitycznyKosztCzasowyBucketSortKolor.BackColor = mpColorDialog1.Color;
-
+            Color mpWybranyKolor = mpColorDialog1.Color;
+            mpBTNAnalitycznyKosztCzasowyBucketSortKolor.BackColor = mpWybranyKolor;
+            mpCHTWykresWynikow.Series[4].Color= mpWybranyKolor;
         }
 
         private void mpBTNKosztPamieciowyBucketSortKolor_Click(object sender, EventArgs e)
         {
-            mpBTNKosztPamieciowyBucketSortKolor.BackColor = mpColorDialog1.Color;
+            Color mpWybranyKolor = mpColorDialog1.Color;
+            mpBTNKosztPamieciowyBucketSortKolor.BackColor = mpWybranyKolor;
+            mpCHTWykresWynikow.Series[5].Color= mpWybranyKolor;
         }
 
         // funkcja zmieniająca typ linii dla danej serii wykresu
@@ -204,6 +235,7 @@ namespace Formularze_nawigacja
                 default: return ChartDashStyle.Solid;
             }
         }
+
 
         private void mpBTNWykreWynikow_Click(object sender, EventArgs e)
         {
@@ -243,7 +275,7 @@ namespace Formularze_nawigacja
             mpCHTWykresWynikow.Series[1].BorderWidth = (int)mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Value;
             mpCHTWykresWynikow.Series[1].Points.DataBindXY(mpRozmiaryTablic, mpWynikiAnalityczneMergeSort);
 
-            mpCHTWykresWynikow.Series.Add("koszt pamięciowy MergeSort");
+            mpCHTWykresWynikow.Series.Add("Koszt pamięciowy MergeSort");
             mpCHTWykresWynikow.Series[2].ChartType = SeriesChartType.Line;
             mpCHTWykresWynikow.Series[2].Color = mpBTNKosztPamieciowyMergeSortKolor.BackColor;
             mpCHTWykresWynikow.Series[2].BorderDashStyle = mpZmianaTypuLinii(mpCMBKosztPamieciowyMergeSortRodzajLinii.SelectedIndex);
@@ -264,7 +296,7 @@ namespace Formularze_nawigacja
             mpCHTWykresWynikow.Series[4].BorderWidth = (int)mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Value;
             mpCHTWykresWynikow.Series[4].Points.DataBindXY(mpRozmiaryTablic, mpWynikiAnalityczneBucketSort);
 
-            mpCHTWykresWynikow.Series.Add("koszt pamięciowy BucketSort");
+            mpCHTWykresWynikow.Series.Add("Koszt pamięciowy BucketSort");
             mpCHTWykresWynikow.Series[5].ChartType = SeriesChartType.Line;
             mpCHTWykresWynikow.Series[5].Color = mpBTNKosztPamieciowyBucketSortKolor.BackColor;
             mpCHTWykresWynikow.Series[5].BorderDashStyle = mpZmianaTypuLinii(mpCMBKosztPamieciowyBucketSortRodzajLinii.SelectedIndex);
