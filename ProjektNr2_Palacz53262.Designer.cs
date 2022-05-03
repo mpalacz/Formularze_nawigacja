@@ -81,6 +81,18 @@ namespace Formularze_nawigacja
             this.mpBTNKolorTla = new System.Windows.Forms.Button();
             this.mpLBLKolorTla = new System.Windows.Forms.Label();
             this.mpDGVPoSortowaniu = new System.Windows.Forms.DataGridView();
+            this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MergeSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MergeSortHashCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BucketSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BucketSortHashCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Indeks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LicznikOperacjiDominujacychMergeSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LicznikOperacjiDominujacychBucketSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WynikiAnalityczneMergeSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WynikiAnalityczneBucketSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WynikiKosztuPamieciMergeSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WynikiKosztuPamieciBucketSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWyników)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpCHTWykresWynikow)).BeginInit();
@@ -96,6 +108,7 @@ namespace Formularze_nawigacja
             // 
             // mpBTNWizualizacjaTablicyPoSortowaniu
             // 
+            this.mpBTNWizualizacjaTablicyPoSortowaniu.Enabled = false;
             this.mpBTNWizualizacjaTablicyPoSortowaniu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.mpBTNWizualizacjaTablicyPoSortowaniu.Location = new System.Drawing.Point(444, 595);
             this.mpBTNWizualizacjaTablicyPoSortowaniu.Name = "mpBTNWizualizacjaTablicyPoSortowaniu";
@@ -162,6 +175,14 @@ namespace Formularze_nawigacja
             // mpDGVTabelaWyników
             // 
             this.mpDGVTabelaWyników.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mpDGVTabelaWyników.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Indeks,
+            this.LicznikOperacjiDominujacychMergeSort,
+            this.LicznikOperacjiDominujacychBucketSort,
+            this.WynikiAnalityczneMergeSort,
+            this.WynikiAnalityczneBucketSort,
+            this.WynikiKosztuPamieciMergeSort,
+            this.WynikiKosztuPamieciBucketSort});
             this.mpDGVTabelaWyników.Location = new System.Drawing.Point(12, 41);
             this.mpDGVTabelaWyników.Name = "mpDGVTabelaWyników";
             this.mpDGVTabelaWyników.Size = new System.Drawing.Size(804, 548);
@@ -641,11 +662,89 @@ namespace Formularze_nawigacja
             // mpDGVPoSortowaniu
             // 
             this.mpDGVPoSortowaniu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mpDGVPoSortowaniu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Index,
+            this.MergeSort,
+            this.MergeSortHashCode,
+            this.BucketSort,
+            this.BucketSortHashCode});
             this.mpDGVPoSortowaniu.Location = new System.Drawing.Point(12, 41);
             this.mpDGVPoSortowaniu.Name = "mpDGVPoSortowaniu";
             this.mpDGVPoSortowaniu.Size = new System.Drawing.Size(804, 548);
             this.mpDGVPoSortowaniu.TabIndex = 16;
             this.mpDGVPoSortowaniu.Visible = false;
+            // 
+            // Index
+            // 
+            this.Index.HeaderText = "Index tablicy";
+            this.Index.Name = "Index";
+            this.Index.ReadOnly = true;
+            // 
+            // MergeSort
+            // 
+            this.MergeSort.HeaderText = "MergeSort";
+            this.MergeSort.Name = "MergeSort";
+            this.MergeSort.ReadOnly = true;
+            // 
+            // MergeSortHashCode
+            // 
+            this.MergeSortHashCode.HeaderText = "MergeSort HashCode";
+            this.MergeSortHashCode.Name = "MergeSortHashCode";
+            this.MergeSortHashCode.ReadOnly = true;
+            // 
+            // BucketSort
+            // 
+            this.BucketSort.HeaderText = "BucketSort";
+            this.BucketSort.Name = "BucketSort";
+            this.BucketSort.ReadOnly = true;
+            // 
+            // BucketSortHashCode
+            // 
+            this.BucketSortHashCode.HeaderText = "BucketSort HashCode";
+            this.BucketSortHashCode.Name = "BucketSortHashCode";
+            this.BucketSortHashCode.ReadOnly = true;
+            // 
+            // Indeks
+            // 
+            this.Indeks.HeaderText = "Index";
+            this.Indeks.Name = "Indeks";
+            this.Indeks.ReadOnly = true;
+            // 
+            // LicznikOperacjiDominujacychMergeSort
+            // 
+            this.LicznikOperacjiDominujacychMergeSort.HeaderText = "Licznik Operacji Dominujących MergeSort";
+            this.LicznikOperacjiDominujacychMergeSort.Name = "LicznikOperacjiDominujacychMergeSort";
+            this.LicznikOperacjiDominujacychMergeSort.ReadOnly = true;
+            // 
+            // LicznikOperacjiDominujacychBucketSort
+            // 
+            this.LicznikOperacjiDominujacychBucketSort.HeaderText = "Licznik Operacji Dominujących BucketSort";
+            this.LicznikOperacjiDominujacychBucketSort.Name = "LicznikOperacjiDominujacychBucketSort";
+            this.LicznikOperacjiDominujacychBucketSort.ReadOnly = true;
+            // 
+            // WynikiAnalityczneMergeSort
+            // 
+            this.WynikiAnalityczneMergeSort.HeaderText = "Wyniki Analityczne MergeSort";
+            this.WynikiAnalityczneMergeSort.Name = "WynikiAnalityczneMergeSort";
+            this.WynikiAnalityczneMergeSort.ReadOnly = true;
+            // 
+            // WynikiAnalityczneBucketSort
+            // 
+            this.WynikiAnalityczneBucketSort.HeaderText = "Wyniki Analityczne BucketSort";
+            this.WynikiAnalityczneBucketSort.Name = "WynikiAnalityczneBucketSort";
+            this.WynikiAnalityczneBucketSort.ReadOnly = true;
+            // 
+            // WynikiKosztuPamieciMergeSort
+            // 
+            this.WynikiKosztuPamieciMergeSort.HeaderText = "Wyniki Kosztu Pamięci MergeSort";
+            this.WynikiKosztuPamieciMergeSort.Name = "WynikiKosztuPamieciMergeSort";
+            this.WynikiKosztuPamieciMergeSort.ReadOnly = true;
+            // 
+            // WynikiKosztuPamieciBucketSort
+            // 
+            this.WynikiKosztuPamieciBucketSort.HeaderText = "Wyniki Kosztu Pamięci BucketSort";
+            this.WynikiKosztuPamieciBucketSort.Name = "WynikiKosztuPamieciBucketSort";
+            this.WynikiKosztuPamieciBucketSort.ReadOnly = true;
             // 
             // ProjektNr2_Palacz53262
             // 
@@ -741,5 +840,17 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.NumericUpDown mpNUDKosztCzasowyMergeSortGruboscLinii;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView mpDGVPoSortowaniu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Index;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MergeSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MergeSortHashCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BucketSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BucketSortHashCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Indeks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LicznikOperacjiDominujacychMergeSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LicznikOperacjiDominujacychBucketSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WynikiAnalityczneMergeSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WynikiAnalityczneBucketSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WynikiKosztuPamieciMergeSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WynikiKosztuPamieciBucketSort;
     }
 }

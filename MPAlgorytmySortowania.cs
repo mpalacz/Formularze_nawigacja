@@ -57,10 +57,10 @@ namespace Formularze_nawigacja
         }
         public static int mpMergeSortProjekt(ref string[] mpT, int mpD, int mpG)
         {
-            int mpLicznik = 0; // licznik operacji dominujących
             if (mpD == mpG) // sprawdzenie czy tablica ma więcej niz jeden element
                 return 0; // jeśli tak, zwracana jest ilość operacaji dominujących równa 0
                           // i sortowanie się nie wykonuje (gdyż nie jest to możliwe)
+            int mpLicznik = 0; // licznik operacji dominujących
             int mpS = (mpD + mpG) / 2; // zdefiniowanie zmiennej przechowującej środkowy indeks tablicy
             // wywołanie metody mpMergeSortProjekt dla obu połówek tablicy
             mpLicznik += mpMergeSortProjekt(ref mpT, mpD, mpS);
@@ -82,24 +82,63 @@ namespace Formularze_nawigacja
             }
             return mpLicznik;
         }
-        public static int mpBucketSortProjekt(ref string[] mpT, int mpN)
-        {
-            if (mpT.Length <= 0)
-                return 0;
-            int mpLicznik = 0;
-            List<string>[] mpKubełki = new List<string>[mpN];
 
-            for(int mpI = 0; mpI < mpN; mpI++)
-                mpKubełki[mpI] = new List<string>(); mpLicznik++;
-            for (int mpI = 0; mpI < mpN; mpI++)
-                mpKubełki[mpT[mpI].GetHashCode() / mpN].Add(mpT[mpI]); mpLicznik++;
-            for (int mpI = 0; mpI < mpN; mpI++)
-                mpKubełki[mpI].Sort(); mpLicznik++;
+        //  sortowanie tablicy string za pomocą algorytmu BucketSort
+        public static int mpBucketSortString(ref string[] mpT,short mpZnakHashCode)
+        {
+            // jeśli tablica ma co najmniej jeden element, sortowanie nie jest wykonywane
+            if (mpT.Length <= 1)
+                return 0;
+            int mpLicznik = 0; // licznik operacji dominujących
+            List<string>[] mpKubelki = new List<string>[mpT.Length];
+
+            for (int mpI = 0; mpI < mpT.Length; mpI++)
+                mpKubelki[mpI] = new List<string>(); mpLicznik++;
+            for (int mpI = 0; mpI < mpT.Length; mpI++)
+            {
+                int mpIndexKubelka = (int)(mpT[mpI].GetHashCode() * Math.Pow(10, -9) * mpT.Length * mpZnakHashCode);
+                mpKubelki[mpIndexKubelka].Add(mpT[mpI]); 
+                mpLicznik++;
+            }
+            for (int mpI = 0; mpI < mpT.Length; mpI++)
+                mpKubelki[mpI].Sort(); mpLicznik++;
 
             int mpIndex = 0;
-            for (int mpI = 0; mpI < mpN; mpI++)
-                for (int mpJ = 0; mpJ < mpKubełki[mpI].Count; mpJ++)
-                    mpT[mpIndex++] = mpKubełki[mpI][mpJ]; mpLicznik++;
+            for (int mpI = 0; mpI < mpT.Length; mpI++)
+                for (int mpJ = 0; mpJ < mpKubelki[mpI].Count; mpJ++)
+                    mpT[mpIndex++] = mpKubelki[mpI][mpJ]; mpLicznik++;
+            return mpLicznik;
+        }
+
+        // metoda do sortowania za pomocą algorytmu BucketSort stworzona na potrzeby projektu
+        public static int mpBucketSortProjekt(ref string[] mpT)
+        {
+            // jeśli tablica ma co najmniej jeden element, sortowanie nie jest wykonywane
+            if (mpT.Length <= 1)
+                return 0;
+            int mpLicznik = 0; // licznik operacji dominujących
+            List<string> mpHashCodeUjemnyLista = new List<string>(); // lista przechowująca elementy tablicy o ujemnym HashCodzie
+            List<string> mpHashCodeDodatniLista = new List<string>(); // lista przechowująca elementy tablicy o dodatnim HashCodzie
+            ushort mpI; // zmienna pomocnicza do iteracji
+            // przypisanie elementów do odpowiedniej listy
+            for (mpI = 0; mpI < mpT.Length; mpI++)
+                if(mpT[mpI].GetHashCode() < 0) 
+                    mpHashCodeUjemnyLista.Add(mpT[mpI]);
+                else
+                    mpHashCodeDodatniLista.Add(mpT[mpI]);
+            // przeniesienie list do tablic
+            string[] mpHashCodeUjemnyTablica = mpHashCodeUjemnyLista.ToArray();
+            string[] mpHashCodeDodatniTablica = mpHashCodeDodatniLista.ToArray();
+            // przesortowanie tablic
+            mpLicznik += mpBucketSortString(ref mpHashCodeUjemnyTablica, -1);
+            mpLicznik += mpBucketSortString(ref mpHashCodeDodatniTablica, 1);
+            Array.Reverse(mpHashCodeUjemnyTablica); // odwórcenie tablicy z elementami ujemnymi
+            // umieszczenie posortowanych elementów w tablicy wejściowej
+            for(mpI = 0; mpI < mpHashCodeUjemnyTablica.Length; mpI++)  
+                mpT[mpI]= mpHashCodeUjemnyTablica[mpI];
+            for(; mpI<mpT.Length;mpI++)
+                mpT[mpI]=mpHashCodeDodatniTablica[mpI - mpHashCodeUjemnyTablica.Length];
+
             return mpLicznik;
         }
     }

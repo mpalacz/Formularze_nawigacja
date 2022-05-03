@@ -45,16 +45,16 @@ namespace Formularze_nawigacja
         // dane wejściowe: wielkość zwracanej tablicy i maksymalna długość elementów tablicy
         public static string[] mpGeneratorTablicString(ushort mpRozmiarTablicy, ushort mpMaxDlugoscElementowTablicy)
         {
-            string[] mpTablicaStringów = new string[mpRozmiarTablicy]; // zadeklarowanie pustej tablicy
+            string[] mpTablicaStringow = new string[mpRozmiarTablicy]; // zadeklarowanie pustej tablicy
             Random mpR = new Random(); // generator liczb losowych
-            for (ushort mpI = 0; mpI < mpTablicaStringów.Length; mpI++) // iterowanie przez całą tablicę
+            for (ushort mpI = 0; mpI < mpTablicaStringow.Length; mpI++) // iterowanie przez całą tablicę
             {
                 string mpNapis = ""; // zadeklarowanie pustego napisu
                 for (ushort mpJ = 0; mpJ < mpR.Next(mpMaxDlugoscElementowTablicy); mpJ++) // tworzenie wyrazu o losowej wielkości (maksymalna wielkość wynosi 20)
                     mpNapis += (char)(mpR.Next(32, 126)); // dodawanie do napisu losowego znaku z zakresu ascii (z pominięciem znaków sterujących)
-                mpTablicaStringów[mpI] = mpNapis; // przypisanie wartości napisu do aktualnie iterowanego elementu tablicy
+                mpTablicaStringow[mpI] = mpNapis; // przypisanie wartości napisu do aktualnie iterowanego elementu tablicy
             }
-            return mpTablicaStringów;
+            return mpTablicaStringow;
         }
 
 
@@ -121,17 +121,17 @@ namespace Formularze_nawigacja
             mpWynikiKosztuPamieciowegoMergeSort = new ushort[mpMaxRozmiarTablicy];
             mpWynikiKosztuPamieciowegoBucketSort = new ushort[mpMaxRozmiarTablicy];
             // przeprowadznie eksperymentu dla każdego rozmiaru tablicy
-            for (ushort mpI = 1; mpI < mpMaxRozmiarTablicy; mpI++)
+            for (ushort mpI = 1; mpI <= mpMaxRozmiarTablicy; mpI++)
             {
                 // wykonywanie eksperytmentu w ilości podanej próby badawczej
-                for (ushort mpJ = 1; mpJ < mpProbaBadawcza; mpJ++)
+                for (ushort mpJ = 1; mpJ <= mpProbaBadawcza; mpJ++)
                 {
                     // generowanie tablic do sortowania 
                     mpTMergeSort = mpGeneratorTablicString(mpI, mpMaxRozmiarElementowTablic);
                     mpTBucketSort = mpTMergeSort;
                     // sortowanie tablic i aktualizacja liczników operacji dominujących
-                    mpLicznikMergeSort += (ushort)MPAlgorytmySortowania.mpMergeSortProjekt(ref mpTMergeSort, 0, mpI);
-                    mpLicznikBucketSort += (ushort)MPAlgorytmySortowania.mpBucketSortProjekt(ref mpTBucketSort, mpI);
+                    mpLicznikMergeSort += (ushort)MPAlgorytmySortowania.mpMergeSortProjekt(ref mpTMergeSort, 0, mpI-1);
+                    mpLicznikBucketSort += (ushort)MPAlgorytmySortowania.mpBucketSortProjekt(ref mpTBucketSort);
                 }
                 // przechowanie średnich ilości opercji dominujących w talicach z danymi z pomiaru
                 mpDaneZPomiaruMergeSort[mpI] = (ushort)(mpLicznikMergeSort / mpProbaBadawcza);
@@ -153,7 +153,7 @@ namespace Formularze_nawigacja
                 out ushort[] mpWynikiKosztuPamieciBucketSort))
                 return;
             mpDGVTabelaWyników.Rows.Clear();
-            for (ushort mpI = 0; mpI < mpMaxRozmiarTablicy; mpI++)
+            for (ushort mpI = 1; mpI <= mpMaxRozmiarTablicy; mpI++)
             {
                 mpDGVTabelaWyników.Rows.Add();
                 mpDGVTabelaWyników.Rows[mpI].Cells[0].Value = mpI;
@@ -364,7 +364,9 @@ namespace Formularze_nawigacja
                 // wpisanie wartości do komurek
                 mpDGVPoSortowaniu.Rows[mpI].Cells[0].Value = mpI;
                 mpDGVPoSortowaniu.Rows[mpI].Cells[1].Value=mpTMergeSort[mpI];
-                mpDGVPoSortowaniu.Rows[mpI].Cells[2].Value = mpTBucketSort[mpI];
+                mpDGVPoSortowaniu.Rows[mpI].Cells[2].Value= mpTMergeSort[mpI].GetHashCode();
+                mpDGVPoSortowaniu.Rows[mpI].Cells[3].Value = mpTBucketSort[mpI];
+                mpDGVPoSortowaniu.Rows[mpI].Cells[4].Value = mpTBucketSort[mpI].GetHashCode();
             }
             // ukrycie kontrolek pokazujących wyniki analizy sortowania
             mpCHTWykresWynikow.Visible = false;
