@@ -96,8 +96,10 @@ namespace Formularze_nawigacja
                 mpKubelki[mpI] = new List<string>(); mpLicznik++;
             for (int mpI = 0; mpI < mpT.Length; mpI++)
             {
-                int mpIndexKubelka = (int)(mpT[mpI].GetHashCode() * Math.Pow(10, -9) * mpT.Length * mpZnakHashCode);
-                mpKubelki[mpIndexKubelka].Add(mpT[mpI]); 
+                double mpHashCode = mpT[mpI].GetHashCode() * mpZnakHashCode;
+                while (mpHashCode > 1)
+                    mpHashCode /= 10;
+                mpKubelki[(int)(mpHashCode * mpT.Length)].Add(mpT[mpI]); 
                 mpLicznik++;
             }
             for (int mpI = 0; mpI < mpT.Length; mpI++)

@@ -30,9 +30,9 @@ namespace Formularze_nawigacja
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea14 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend14 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mpBTNWizualizacjaTablicyPoSortowaniu = new System.Windows.Forms.Button();
             this.mpBTNWynikiTabelarycznie = new System.Windows.Forms.Button();
             this.mpBTNWykreWynikow = new System.Windows.Forms.Button();
@@ -86,7 +86,7 @@ namespace Formularze_nawigacja
             this.MergeSortHashCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BucketSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BucketSortHashCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Indeks = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RozmiarTablicy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LicznikOperacjiDominujacychMergeSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LicznikOperacjiDominujacychBucketSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WynikiAnalityczneMergeSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -176,7 +176,7 @@ namespace Formularze_nawigacja
             // 
             this.mpDGVTabelaWyników.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mpDGVTabelaWyników.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Indeks,
+            this.RozmiarTablicy,
             this.LicznikOperacjiDominujacychMergeSort,
             this.LicznikOperacjiDominujacychBucketSort,
             this.WynikiAnalityczneMergeSort,
@@ -204,9 +204,9 @@ namespace Formularze_nawigacja
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(822, 41);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 19);
+            this.label2.Size = new System.Drawing.Size(178, 19);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Rozmiar tablicy";
+            this.label2.Text = "Maksymalny rozmiar tablicy";
             // 
             // mpTXTMaxRozmiarTablicy
             // 
@@ -253,16 +253,16 @@ namespace Formularze_nawigacja
             // 
             // mpCHTWykresWynikow
             // 
-            chartArea1.Name = "ChartArea1";
-            this.mpCHTWykresWynikow.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.mpCHTWykresWynikow.Legends.Add(legend1);
+            chartArea14.Name = "ChartArea1";
+            this.mpCHTWykresWynikow.ChartAreas.Add(chartArea14);
+            legend14.Name = "Legend1";
+            this.mpCHTWykresWynikow.Legends.Add(legend14);
             this.mpCHTWykresWynikow.Location = new System.Drawing.Point(12, 41);
             this.mpCHTWykresWynikow.Name = "mpCHTWykresWynikow";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.mpCHTWykresWynikow.Series.Add(series1);
+            series14.ChartArea = "ChartArea1";
+            series14.Legend = "Legend1";
+            series14.Name = "Series1";
+            this.mpCHTWykresWynikow.Series.Add(series14);
             this.mpCHTWykresWynikow.Size = new System.Drawing.Size(804, 548);
             this.mpCHTWykresWynikow.TabIndex = 14;
             this.mpCHTWykresWynikow.Text = "chart1";
@@ -323,6 +323,7 @@ namespace Formularze_nawigacja
             0,
             0,
             0});
+            this.mpNUDKosztPamieciowyMergeSortGruboscLinii.ValueChanged += new System.EventHandler(this.mpNUDKosztPamieciowyMergeSortGruboscLinii_ValueChanged);
             // 
             // mpNUDKosztPamieciowyBucketSortGruboscLinii
             // 
@@ -340,6 +341,7 @@ namespace Formularze_nawigacja
             0,
             0,
             0});
+            this.mpNUDKosztPamieciowyBucketSortGruboscLinii.ValueChanged += new System.EventHandler(this.mpNUDKosztPamieciowyBucketSortGruboscLinii_ValueChanged);
             // 
             // mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii
             // 
@@ -357,6 +359,7 @@ namespace Formularze_nawigacja
             0,
             0,
             0});
+            this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.ValueChanged += new System.EventHandler(this.mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii_ValueChanged);
             // 
             // mpNUDKosztCzasowyBucketSortGruboscLinii
             // 
@@ -374,6 +377,7 @@ namespace Formularze_nawigacja
             0,
             0,
             0});
+            this.mpNUDKosztCzasowyBucketSortGruboscLinii.ValueChanged += new System.EventHandler(this.mpNUDKosztCzasowyBucketSortGruboscLinii_ValueChanged);
             // 
             // mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii
             // 
@@ -391,6 +395,7 @@ namespace Formularze_nawigacja
             0,
             0,
             0});
+            this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.ValueChanged += new System.EventHandler(this.mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii_ValueChanged);
             // 
             // mpNUDKosztCzasowyMergeSortGruboscLinii
             // 
@@ -408,6 +413,7 @@ namespace Formularze_nawigacja
             0,
             0,
             0});
+            this.mpNUDKosztCzasowyMergeSortGruboscLinii.ValueChanged += new System.EventHandler(this.mpNUDKosztCzasowyMergeSortGruboscLinii_ValueChanged);
             // 
             // label13
             // 
@@ -432,6 +438,7 @@ namespace Formularze_nawigacja
             this.mpCMBKosztPamieciowyBucketSortRodzajLinii.Name = "mpCMBKosztPamieciowyBucketSortRodzajLinii";
             this.mpCMBKosztPamieciowyBucketSortRodzajLinii.Size = new System.Drawing.Size(196, 27);
             this.mpCMBKosztPamieciowyBucketSortRodzajLinii.TabIndex = 21;
+            this.mpCMBKosztPamieciowyBucketSortRodzajLinii.SelectedIndexChanged += new System.EventHandler(this.mpCMBKosztPamieciowyBucketSortRodzajLinii_SelectedIndexChanged);
             // 
             // mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii
             // 
@@ -447,6 +454,7 @@ namespace Formularze_nawigacja
             this.mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.Name = "mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii";
             this.mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.Size = new System.Drawing.Size(196, 27);
             this.mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.TabIndex = 20;
+            this.mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.SelectedIndexChanged += new System.EventHandler(this.mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii_SelectedIndexChanged);
             // 
             // mpCMBKosztCzasowyBucketSortRodzajLinii
             // 
@@ -462,6 +470,7 @@ namespace Formularze_nawigacja
             this.mpCMBKosztCzasowyBucketSortRodzajLinii.Name = "mpCMBKosztCzasowyBucketSortRodzajLinii";
             this.mpCMBKosztCzasowyBucketSortRodzajLinii.Size = new System.Drawing.Size(196, 27);
             this.mpCMBKosztCzasowyBucketSortRodzajLinii.TabIndex = 19;
+            this.mpCMBKosztCzasowyBucketSortRodzajLinii.SelectedIndexChanged += new System.EventHandler(this.mpCMBKosztCzasowyBucketSortRodzajLinii_SelectedIndexChanged);
             // 
             // mpCMBKosztPamieciowyMergeSortRodzajLinii
             // 
@@ -477,6 +486,7 @@ namespace Formularze_nawigacja
             this.mpCMBKosztPamieciowyMergeSortRodzajLinii.Name = "mpCMBKosztPamieciowyMergeSortRodzajLinii";
             this.mpCMBKosztPamieciowyMergeSortRodzajLinii.Size = new System.Drawing.Size(196, 27);
             this.mpCMBKosztPamieciowyMergeSortRodzajLinii.TabIndex = 18;
+            this.mpCMBKosztPamieciowyMergeSortRodzajLinii.SelectedIndexChanged += new System.EventHandler(this.mpCMBKosztPamieciowyMergeSortRodzajLinii_SelectedIndexChanged);
             // 
             // mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii
             // 
@@ -492,6 +502,7 @@ namespace Formularze_nawigacja
             this.mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii.Name = "mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii";
             this.mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii.Size = new System.Drawing.Size(196, 27);
             this.mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii.TabIndex = 17;
+            this.mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii.SelectedIndexChanged += new System.EventHandler(this.mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii_SelectedIndexChanged);
             // 
             // mpCMBKosztCzasowyMergeSortRodzajLinii
             // 
@@ -507,6 +518,7 @@ namespace Formularze_nawigacja
             this.mpCMBKosztCzasowyMergeSortRodzajLinii.Name = "mpCMBKosztCzasowyMergeSortRodzajLinii";
             this.mpCMBKosztCzasowyMergeSortRodzajLinii.Size = new System.Drawing.Size(196, 27);
             this.mpCMBKosztCzasowyMergeSortRodzajLinii.TabIndex = 16;
+            this.mpCMBKosztCzasowyMergeSortRodzajLinii.SelectedIndexChanged += new System.EventHandler(this.mpCMBKosztCzasowyMergeSortRodzajLinii_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -704,11 +716,11 @@ namespace Formularze_nawigacja
             this.BucketSortHashCode.Name = "BucketSortHashCode";
             this.BucketSortHashCode.ReadOnly = true;
             // 
-            // Indeks
+            // RozmiarTablicy
             // 
-            this.Indeks.HeaderText = "Index";
-            this.Indeks.Name = "Indeks";
-            this.Indeks.ReadOnly = true;
+            this.RozmiarTablicy.HeaderText = "Rozmiar Tablicy";
+            this.RozmiarTablicy.Name = "RozmiarTablicy";
+            this.RozmiarTablicy.ReadOnly = true;
             // 
             // LicznikOperacjiDominujacychMergeSort
             // 
@@ -845,7 +857,7 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.DataGridViewTextBoxColumn MergeSortHashCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn BucketSort;
         private System.Windows.Forms.DataGridViewTextBoxColumn BucketSortHashCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Indeks;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RozmiarTablicy;
         private System.Windows.Forms.DataGridViewTextBoxColumn LicznikOperacjiDominujacychMergeSort;
         private System.Windows.Forms.DataGridViewTextBoxColumn LicznikOperacjiDominujacychBucketSort;
         private System.Windows.Forms.DataGridViewTextBoxColumn WynikiAnalityczneMergeSort;
