@@ -90,6 +90,7 @@ namespace Formularze_nawigacja
             if (mpT.Length <= 1)
                 return 0;
             int mpLicznik = 0; // licznik operacji dominujących
+            // utworzenie listy kubełków
             List<string>[] mpKubelki = new List<string>[mpT.Length];
 
             for (int mpI = 0; mpI < mpT.Length; mpI++)
@@ -97,6 +98,7 @@ namespace Formularze_nawigacja
             for (int mpI = 0; mpI < mpT.Length; mpI++)
             {
                 double mpHashCode = mpT[mpI].GetHashCode() * mpZnakHashCode;
+                // zamiana mpHashCode w ułamek bez elementu całkowitego
                 while (mpHashCode > 1)
                     mpHashCode /= 10;
                 mpKubelki[(int)(mpHashCode * mpT.Length)].Add(mpT[mpI]); 
