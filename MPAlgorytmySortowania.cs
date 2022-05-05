@@ -92,9 +92,9 @@ namespace Formularze_nawigacja
             int mpLicznik = 0; // licznik operacji dominujących
             // utworzenie listy kubełków
             List<string>[] mpKubelki = new List<string>[mpT.Length];
-
             for (int mpI = 0; mpI < mpT.Length; mpI++)
                 mpKubelki[mpI] = new List<string>(); mpLicznik++;
+            // umieszczenie elementów tablicy w kubłekach
             for (int mpI = 0; mpI < mpT.Length; mpI++)
             {
                 double mpHashCode = mpT[mpI].GetHashCode() * mpZnakHashCode;
@@ -104,9 +104,11 @@ namespace Formularze_nawigacja
                 mpKubelki[(int)(mpHashCode * mpT.Length)].Add(mpT[mpI]); 
                 mpLicznik++;
             }
+            // przesortowanie kubełków
             for (int mpI = 0; mpI < mpT.Length; mpI++)
                 mpKubelki[mpI].Sort(); mpLicznik++;
 
+            // umieszczenie zawartości kubełków w tablicy
             int mpIndex = 0;
             for (int mpI = 0; mpI < mpT.Length; mpI++)
                 for (int mpJ = 0; mpJ < mpKubelki[mpI].Count; mpJ++)

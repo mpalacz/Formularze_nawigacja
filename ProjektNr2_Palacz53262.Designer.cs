@@ -30,9 +30,9 @@ namespace Formularze_nawigacja
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mpBTNWizualizacjaTablicyPoSortowaniu = new System.Windows.Forms.Button();
             this.mpBTNWynikiTabelarycznie = new System.Windows.Forms.Button();
             this.mpBTNWykreWynikow = new System.Windows.Forms.Button();
@@ -89,9 +89,7 @@ namespace Formularze_nawigacja
             this.mpDGVPoSortowaniu = new System.Windows.Forms.DataGridView();
             this.Index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MergeSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MergeSortHashCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BucketSort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BucketSortHashCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mpDGVTabelaWyników)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpErrorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mpCHTWykresWynikow)).BeginInit();
@@ -287,16 +285,16 @@ namespace Formularze_nawigacja
             // 
             // mpCHTWykresWynikow
             // 
-            chartArea2.Name = "ChartArea1";
-            this.mpCHTWykresWynikow.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.mpCHTWykresWynikow.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.mpCHTWykresWynikow.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.mpCHTWykresWynikow.Legends.Add(legend1);
             this.mpCHTWykresWynikow.Location = new System.Drawing.Point(12, 41);
             this.mpCHTWykresWynikow.Name = "mpCHTWykresWynikow";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.mpCHTWykresWynikow.Series.Add(series2);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.mpCHTWykresWynikow.Series.Add(series1);
             this.mpCHTWykresWynikow.Size = new System.Drawing.Size(804, 548);
             this.mpCHTWykresWynikow.TabIndex = 14;
             this.mpCHTWykresWynikow.Text = "chart1";
@@ -741,9 +739,7 @@ namespace Formularze_nawigacja
             this.mpDGVPoSortowaniu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Index,
             this.MergeSort,
-            this.MergeSortHashCode,
-            this.BucketSort,
-            this.BucketSortHashCode});
+            this.BucketSort});
             this.mpDGVPoSortowaniu.Location = new System.Drawing.Point(12, 41);
             this.mpDGVPoSortowaniu.Name = "mpDGVPoSortowaniu";
             this.mpDGVPoSortowaniu.Size = new System.Drawing.Size(804, 548);
@@ -762,23 +758,11 @@ namespace Formularze_nawigacja
             this.MergeSort.Name = "MergeSort";
             this.MergeSort.ReadOnly = true;
             // 
-            // MergeSortHashCode
-            // 
-            this.MergeSortHashCode.HeaderText = "MergeSort HashCode";
-            this.MergeSortHashCode.Name = "MergeSortHashCode";
-            this.MergeSortHashCode.ReadOnly = true;
-            // 
             // BucketSort
             // 
             this.BucketSort.HeaderText = "BucketSort";
             this.BucketSort.Name = "BucketSort";
             this.BucketSort.ReadOnly = true;
-            // 
-            // BucketSortHashCode
-            // 
-            this.BucketSortHashCode.HeaderText = "BucketSort HashCode";
-            this.BucketSortHashCode.Name = "BucketSortHashCode";
-            this.BucketSortHashCode.ReadOnly = true;
             // 
             // ProjektNr2_Palacz53262
             // 
@@ -872,11 +856,6 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.NumericUpDown mpNUDKosztCzasowyMergeSortGruboscLinii;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView mpDGVPoSortowaniu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Index;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MergeSort;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MergeSortHashCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BucketSort;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BucketSortHashCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn RozmiarTablicy;
         private System.Windows.Forms.DataGridViewTextBoxColumn LicznikOperacjiDominujacychMergeSort;
         private System.Windows.Forms.DataGridViewTextBoxColumn LicznikOperacjiDominujacychBucketSort;
@@ -884,5 +863,8 @@ namespace Formularze_nawigacja
         private System.Windows.Forms.DataGridViewTextBoxColumn WynikiAnalityczneBucketSort;
         private System.Windows.Forms.DataGridViewTextBoxColumn WynikiKosztuPamieciMergeSort;
         private System.Windows.Forms.DataGridViewTextBoxColumn WynikiKosztuPamieciBucketSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Index;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MergeSort;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BucketSort;
     }
 }

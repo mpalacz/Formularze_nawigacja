@@ -50,8 +50,8 @@ namespace Formularze_nawigacja
         {
             bool mpCzyPoprawneDane = true;
             mpErrorProvider1.Clear(); // wyczyszczenie błędów wyświetlanych przez kontrolkę errorProvider
-            ushort mpLicznikMergeSort = 0; // licznik operacji dominujących algorytmu MergeSort
-            ushort mpLicznikBucketSort = 0; // licznik operacji dominujących algorytmu BucketSort
+            ushort mpLicznikMergeSort=0; // licznik operacji dominujących algorytmu MergeSort
+            ushort mpLicznikBucketSort=0; // licznik operacji dominujących algorytmu BucketSort
             // wczytanie zormiaru tablicy
             if (!ushort.TryParse(mpTXTMaxRozmiarTablicy.Text, out mpMaxRozmiarTablicy))
             {
@@ -71,17 +71,17 @@ namespace Formularze_nawigacja
                 mpCzyPoprawneDane = false;
             }
             // sprawdzenie czy wczytane dane są równe od zera
-            if (mpMaxRozmiarTablicy == 0)
+            if (mpTXTMaxRozmiarTablicy.Text == "0")
             {
                 mpErrorProvider1.SetError(mpTXTMaxRozmiarTablicy, "Wartość musi być większa od 0");
                 mpCzyPoprawneDane = false;
             }
-            if (mpProbaBadawcza == 0)
+            if (mpTXTProbaBadawcza.Text == "0")
             {
                 mpErrorProvider1.SetError(mpTXTProbaBadawcza, "Wartość musi być większa od 0");
                 mpCzyPoprawneDane = false;
             }
-            if (mpMaxRozmiarElementowTablic == 0)
+            if (mpTXTMaxWielkoscElementowTablicy.Text == "0")
             {
                 mpErrorProvider1.SetError(mpTXTMaxWielkoscElementowTablicy, "Wartość musi być większa od 0");
                 mpCzyPoprawneDane = false;
@@ -125,10 +125,10 @@ namespace Formularze_nawigacja
                 mpDaneZPomiaruBucketSort[mpI] = (ushort)(mpLicznikBucketSort / mpProbaBadawcza);
                 // przechowanie kosztu czasowego w tablicy
                 mpWynikiAnalityczneMergeSort[mpI] = (ushort)(mpI * (Math.Log(mpI) / Math.Log(2) + 1) + mpI);
-                mpWynikiAnalityczneBucketSort[mpI] = mpI;
+                mpWynikiAnalityczneBucketSort[mpI] = (ushort)(mpI * 2);
                 // przechowanie kosztu pamięciowego algorytmów
                 mpWynikiKosztuPamieciowegoMergeSort[mpI] = (ushort)(Math.Log(mpI) / Math.Log(2) + mpI);
-                mpWynikiKosztuPamieciowegoBucketSort[mpI] = 0;
+                mpWynikiKosztuPamieciowegoBucketSort[mpI] = (ushort)(mpI * 2);
             }
             return true;
         }
@@ -383,28 +383,6 @@ namespace Formularze_nawigacja
         {
             // wyczyszczenie kotrolki errorProvider
             mpErrorProvider1.Clear();
-            // ustawienie ustawień początkowych dla typu linii 
-            mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.SelectedIndex = 0;
-            mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii.SelectedIndex = 0;
-            mpCMBKosztCzasowyBucketSortRodzajLinii.SelectedIndex = 1;
-            mpCMBKosztCzasowyMergeSortRodzajLinii.SelectedIndex = 1;
-            mpCMBKosztPamieciowyBucketSortRodzajLinii.SelectedIndex = 2;
-            mpCMBKosztPamieciowyMergeSortRodzajLinii.SelectedIndex = 2;
-            // ustawienie ustawień początkowych dla grubości linii
-            mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Value = 1;
-            mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Value = 1;
-            mpNUDKosztCzasowyBucketSortGruboscLinii.Value = 1;
-            mpNUDKosztCzasowyMergeSortGruboscLinii.Value = 1;
-            mpNUDKosztPamieciowyBucketSortGruboscLinii.Value = 1;
-            mpNUDKosztPamieciowyMergeSortGruboscLinii.Value = 1;
-            // ustawienie ustawień początkowychdla koloru linii
-            mpBTNKolorTla.BackColor = Color.White;
-            mpBTNKosztCzasowyBucketSortKolor.BackColor = Color.Green;
-            mpBTNKosztCzasowyMergeSortKolor.BackColor = Color.Red;
-            mpBTNKosztPamieciowyMergeSortKolor.BackColor = Color.Blue;
-            mpBTNKosztPamieciowyBucketSortKolor.BackColor = Color.Yellow;
-            mpBTNAnalitycznyKosztCzasowyMergeSortKolor.BackColor = Color.Orange;
-            mpBTNAnalitycznyKosztCzasowyBucketSortKolor.BackColor = Color.Purple;
             // wyczyszczenie kontrolki chart
             mpCHTWykresWynikow.Series.Clear();
             mpCHTWykresWynikow.Titles.Clear();
@@ -435,9 +413,7 @@ namespace Formularze_nawigacja
                 // wpisanie wartości do komurek
                 mpDGVPoSortowaniu.Rows[mpI].Cells[0].Value = mpI;
                 mpDGVPoSortowaniu.Rows[mpI].Cells[1].Value = mpTMergeSort[mpI];
-                mpDGVPoSortowaniu.Rows[mpI].Cells[2].Value = mpTMergeSort[mpI].GetHashCode();
-                mpDGVPoSortowaniu.Rows[mpI].Cells[3].Value = mpTBucketSort[mpI];
-                mpDGVPoSortowaniu.Rows[mpI].Cells[4].Value = mpTBucketSort[mpI].GetHashCode();
+                mpDGVPoSortowaniu.Rows[mpI].Cells[2].Value = mpTBucketSort[mpI];
             }
             // ukrycie kontrolek pokazujących wyniki analizy sortowania
             mpCHTWykresWynikow.Visible = false;
