@@ -52,14 +52,24 @@ namespace Formularze_nawigacja
             }
             // pobranie granicprzedziału wartości elementów tablicy T
             int mpDolnaGranicaPrzedzialu, mpGornaGranicaPrzedzialu;
-            if (!int.TryParse(mpTXTDolnaGranica.Text, out mpGornaGranicaPrzedzialu))
+            if (!int.TryParse(mpTXTDolnaGranica.Text, out mpDolnaGranicaPrzedzialu))
             {
                 mpErrorProvider1.SetError(mpTXTDolnaGranica, "ERROR: wystąpił niedozwolony znak w zapisie dolnej granicy przedziału wartości elementów tablicy T");
                 return;
             }
-            if (!int.TryParse(mpTXTGornaGranica.Text, out mpDolnaGranicaPrzedzialu))
+            if (!int.TryParse(mpTXTGornaGranica.Text, out mpGornaGranicaPrzedzialu))
             {
                 mpErrorProvider1.SetError(mpTXTGornaGranica, "ERROR: wystąpił niedozwolony znak w zapisie górnej granicy przedziału wartości elementów tablicy T");
+                return;
+            }
+            if (mpDolnaGranicaPrzedzialu > mpGornaGranicaPrzedzialu)
+            {
+                mpErrorProvider1.SetError(mpTXTGornaGranica, "ERROR: górna granica musi być większa od dolnej");
+                return;
+            }
+            if (mpDolnaGranicaPrzedzialu == mpGornaGranicaPrzedzialu)
+            {
+                mpErrorProvider1.SetError(mpTXTDolnaGranica, "ERROR: granice przedziału musą być różne");
                 return;
             }
             // utworzenie egzemplarza tablicy do sortowania
@@ -78,9 +88,11 @@ namespace Formularze_nawigacja
                 // sortowania i zbierania danych o liczbie wykonanych operacji dominujących
                 for (ushort mpK = 1; mpK < mpLicznoscProbBadawczych; mpK++)
                 {
+                    // generator liczb losowych
+                    Random mpRandom = new Random();
                     // dla każdego powtórzenia sortowania tablicy "generujemy" losowo jej zawartość
                     for (ushort mpI = 0; mpI < mpL; mpI++)
-                        mpT[mpI] = new Random().Next(mpDolnaGranicaPrzedzialu, mpGornaGranicaPrzedzialu);
+                        mpT[mpI] = mpRandom.Next(mpDolnaGranicaPrzedzialu, mpGornaGranicaPrzedzialu);
                     // sortowanie elementów tablicy i zbieranie danych o liczbie wykonanych operacji dominujących
                     // rozpoznanie wybranego algorytmu sortowania
                     switch (mpCMBAlgorytmySortowania.SelectedIndex)
@@ -93,6 +105,9 @@ namespace Formularze_nawigacja
                             break;
                         case 2:
                             mpLicznikOD = MPAlgorytmySortowania.mpQuickSort(ref mpT, 0, (ushort)(mpL - 1));
+                            break;
+                        case 3:
+                            mpLicznikOD += MPAlgorytmySortowania.mpBubbleSort(ref mpT);
                             break;
                     }
                     // przechowanie licznika wykonanych operacji dominujących
@@ -110,12 +125,16 @@ namespace Formularze_nawigacja
                 switch (mpCMBAlgorytmySortowania.SelectedIndex)
                 {
                     case 0:
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * mpL);
+                        break;
                     case 1:
-                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * (mpL - 1) / 2);
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * mpL);
                         break;
                     case 2:
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * (mpL - 1) / 2);
+                        break;
                     case 3:
-                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * (Math.Log(mpL) / Math.Log(2) + 1));
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * Math.Log(mpL));
                         break;
                 }
             }
@@ -124,14 +143,16 @@ namespace Formularze_nawigacja
                 switch (mpCMBAlgorytmySortowania.SelectedIndex)
                 {
                     case 0:
+                        mpWynikiKosztuPamięci[mpI] = 1;
+                        break;
                     case 1:
-                        mpWynikiKosztuPamięci[mpI] = mpI;
+                        mpWynikiKosztuPamięci[mpI] = 1;
                         break;
                     case 2:
+                        mpWynikiKosztuPamięci[mpI] = mpI;
+                        break;
                     case 3:
-                        mpWynikiKosztuPamięci[mpI] = (ushort)(mpI + (Math.Log(mpI) / Math.Log(2)) * 30);
-                        // 30 to domyślnie przyjęta wielkość bloku pamięci (dla wywołania metody),
-                        // który jest odkładany na stosie (wywołań metod)
+                        mpWynikiKosztuPamięci[mpI] = (ushort)(mpI);
                         break;
                 }
             // wpisanie uzyskanych danych z przeprowadzonego pomiaru do kontrolki DataGridView
@@ -159,12 +180,14 @@ namespace Formularze_nawigacja
                     mpDGVTabelaWynikow.Rows[mpI].Cells[3].Style.BackColor = Color.White;
                 }
             }
-            // ustawienie stanu braku aktywności dla obsługiwanego przycisku poleceń
-            mpBTNWynikiTabelaryczne.Enabled = false;
             // odsłonięcie kontrolki DataGridView
             mpDGVTabelaWynikow.Visible = true;
             // ukrycie kontrolki Chart
             mpChartWykresKosztuCzasowego.Visible = false;
+            // ukrycie kontrolki mpDGVPoSortowaniu
+            mpDGVPoSortowaniu.Visible = false;
+            // odlbokowanie resetu
+            mpBTNReset.Enabled = true;
         }
 
         private void mpBTNPowrotDoPulpitu_Click(object sender, EventArgs e)
@@ -206,14 +229,24 @@ namespace Formularze_nawigacja
             }
             // pobranie granicprzedziału wartości elementów tablicy T
             int mpDolnaGranicaPrzedzialu, mpGornaGranicaPrzedzialu;
-            if (!int.TryParse(mpTXTDolnaGranica.Text, out mpGornaGranicaPrzedzialu))
+            if (!int.TryParse(mpTXTDolnaGranica.Text, out mpDolnaGranicaPrzedzialu))
             {
                 mpErrorProvider1.SetError(mpTXTDolnaGranica, "ERROR: wystąpił niedozwolony znak w zapisie dolnej granicy przedziału wartości elementów tablicy T");
                 return;
             }
-            if (!int.TryParse(mpTXTGornaGranica.Text, out mpDolnaGranicaPrzedzialu))
+            if (!int.TryParse(mpTXTGornaGranica.Text, out mpGornaGranicaPrzedzialu))
             {
                 mpErrorProvider1.SetError(mpTXTGornaGranica, "ERROR: wystąpił niedozwolony znak w zapisie górnej granicy przedziału wartości elementów tablicy T");
+                return;
+            }
+            if (mpDolnaGranicaPrzedzialu > mpGornaGranicaPrzedzialu)
+            {
+                mpErrorProvider1.SetError(mpTXTGornaGranica, "ERROR: górna granica musi być większa od dolnej");
+                return;
+            }
+            if (mpDolnaGranicaPrzedzialu == mpGornaGranicaPrzedzialu)
+            {
+                mpErrorProvider1.SetError(mpTXTDolnaGranica, "ERROR: granice przedziału musą być różne");
                 return;
             }
             // utworzenie egzemplarza tablicy do sortowania
@@ -232,9 +265,11 @@ namespace Formularze_nawigacja
                 // sortowania i zbierania danych o liczbie wykonanych operacji dominujących
                 for (ushort mpK = 1; mpK < mpLicznoscProbBadawczych; mpK++)
                 {
+                    // generator liczb losowych
+                    Random mpRandom = new Random();
                     // dla każdego powtórzenia sortowania tablicy "generujemy" losowo jej zawartość
                     for (ushort mpI = 0; mpI < mpL; mpI++)
-                        mpT[mpI] = new Random().Next(mpDolnaGranicaPrzedzialu, mpGornaGranicaPrzedzialu);
+                        mpT[mpI] = mpRandom.Next(mpDolnaGranicaPrzedzialu, mpGornaGranicaPrzedzialu);
                     // sortowanie elementów tablicy i zbieranie danych o liczbie wykonanych operacji dominujących
                     // rozpoznanie wybranego algorytmu sortowania
                     switch (mpCMBAlgorytmySortowania.SelectedIndex)
@@ -247,6 +282,9 @@ namespace Formularze_nawigacja
                             break;
                         case 2:
                             mpLicznikOD = MPAlgorytmySortowania.mpQuickSort(ref mpT, 0, (ushort)(mpL - 1));
+                            break;
+                        case 3:
+                            mpLicznikOD += MPAlgorytmySortowania.mpBubbleSort(ref mpT);
                             break;
                     }
                     // przechowanie licznika wykonanych operacji dominujących
@@ -264,12 +302,16 @@ namespace Formularze_nawigacja
                 switch (mpCMBAlgorytmySortowania.SelectedIndex)
                 {
                     case 0:
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * mpL);
+                        break;
                     case 1:
-                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * (mpL - 1) / 2);
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * mpL);
                         break;
                     case 2:
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * (mpL - 1) / 2);
+                        break;
                     case 3:
-                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * (Math.Log(mpL) / Math.Log(2) + 1));
+                        mpWynikiAnalityczne[mpL] = (ushort)(mpL * Math.Log(mpL));
                         break;
                 }
             }
@@ -278,14 +320,16 @@ namespace Formularze_nawigacja
                 switch (mpCMBAlgorytmySortowania.SelectedIndex)
                 {
                     case 0:
+                        mpWynikiKosztuPamięci[mpI] = 1;
+                        break;
                     case 1:
-                        mpWynikiKosztuPamięci[mpI] = mpI;
+                        mpWynikiKosztuPamięci[mpI] = 1;
                         break;
                     case 2:
+                        mpWynikiKosztuPamięci[mpI] = mpI;
+                        break;
                     case 3:
-                        mpWynikiKosztuPamięci[mpI] = (ushort)(mpI + (Math.Log(mpI) / Math.Log(2)) * 30);
-                        // 30 to domyślnie przyjęta wielkość bloku pamięci (dla wywołania metody),
-                        // który jest odkładany na stosie (wywołań metod)
+                        mpWynikiKosztuPamięci[mpI] = (ushort)(mpI);
                         break;
                 }
             // wpisanie wyników pomiaru do kontrolki Chart
@@ -293,14 +337,14 @@ namespace Formularze_nawigacja
             mpChartWykresKosztuCzasowego.Visible = true;
             // ustalenie tytułu wykresu
             mpChartWykresKosztuCzasowego.Titles.Add("Złóżoność obliczeniowa " +
-                "algorytmu: "+mpCMBAlgorytmySortowania.SelectedItem);
+                "algorytmu: " + mpCMBAlgorytmySortowania.SelectedItem);
             // ustalenie koloru tła kontrolki Chart
             mpChartWykresKosztuCzasowego.BackColor = mpTXTKolorTla.BackColor;
             // ustawienie legendy pod rysukiem
             mpChartWykresKosztuCzasowego.Legends["Legend1"].Docking = Docking.Bottom;
             // deklaracja i utworzenie tablicy rozmiarów badanych (sortowanych) tablic elementów
             int[] mpRozmiarTablicElementow = new int[mpMaxRozmiarTablicy];
-            for(ushort mpI = 0; mpI < mpMaxRozmiarTablicy; mpI++)
+            for (ushort mpI = 0; mpI < mpMaxRozmiarTablicy; mpI++)
                 mpRozmiarTablicElementow[mpI] = mpI;
             // wyczyszczenie kontrolki Chart
             mpChartWykresKosztuCzasowego.Series.Clear();
@@ -312,7 +356,7 @@ namespace Formularze_nawigacja
             mpChartWykresKosztuCzasowego.Series[0].ChartType = SeriesChartType.Line;
             // ustalenie koloru
             mpChartWykresKosztuCzasowego.Series[0].Color = mpTXTKolorLinii.BackColor;
-            mpChartWykresKosztuCzasowego.Series[0].BorderDashStyle = ChartDashStyle.Dash;
+            mpChartWykresKosztuCzasowego.Series[0].BorderDashStyle = mpZmianaTypuLinii(1);
             mpChartWykresKosztuCzasowego.Series[0].BorderWidth = int.Parse(mpTXTGruboscLinii.Text);
             // dodanie do serii danych o numerze 0 współrzędnych kreślonej linii
             mpChartWykresKosztuCzasowego.Series[0].Points.DataBindXY(mpRozmiarTablicElementow, mpDaneZPomiaru);
@@ -322,28 +366,129 @@ namespace Formularze_nawigacja
             mpChartWykresKosztuCzasowego.Series[1].Name = "Analityczny koszt czasowy";
             // ustalenie typu wykresu
             mpChartWykresKosztuCzasowego.Series[1].ChartType = SeriesChartType.Line;
-            mpChartWykresKosztuCzasowego.Series[1].Color= mpTXTKolorLinii.BackColor;
-            mpChartWykresKosztuCzasowego.Series[1].BorderDashStyle= ChartDashStyle.Dash;
+            mpChartWykresKosztuCzasowego.Series[1].Color = mpTXTKolorLinii.BackColor;
+            mpChartWykresKosztuCzasowego.Series[1].BorderDashStyle = mpZmianaTypuLinii(1);
             mpChartWykresKosztuCzasowego.Series[1].BorderWidth = 1;
             // przypisanie serii danych o numerze 1 współrzędnych punktów kreślonej linii
             mpChartWykresKosztuCzasowego.Series[1].Points.DataBindXY(mpRozmiarTablicElementow, mpWynikiAnalityczne);
 
             // dodanie nowej serii danych (dla kosztu pamięciowego algorytmu)
             mpChartWykresKosztuCzasowego.Series.Add("Seria 3");
-            mpChartWykresKosztuCzasowego.Series[2].Name = "Koszt pamięciowy"; mpChartWykresKosztuCzasowego.Series[1].ChartType = SeriesChartType.Line;
+            mpChartWykresKosztuCzasowego.Series[2].Name = "Koszt pamięciowy";
+            mpChartWykresKosztuCzasowego.Series[1].ChartType = SeriesChartType.Line;
             mpChartWykresKosztuCzasowego.Series[2].Color = Color.Green;
-            mpChartWykresKosztuCzasowego.Series[2].BorderDashStyle = ChartDashStyle.Solid;
+            mpChartWykresKosztuCzasowego.Series[2].BorderDashStyle = mpZmianaTypuLinii(1);
             mpChartWykresKosztuCzasowego.Series[2].BorderWidth = 3;
             mpChartWykresKosztuCzasowego.Series[2].Points.DataBindXY(mpRozmiarTablicElementow, mpWynikiKosztuPamięci);
-            // ukrycie kontrolki DataGridView
+            // ukrycie kontrolek DataGridView
             mpDGVTabelaWynikow.Visible = false;
+            mpDGVPoSortowaniu.Visible = false;
             // pokazanie kontrolki Chart
             mpChartWykresKosztuCzasowego.Visible = true;
+            // odlokowanie kontrolek zmieniających wygląd wykresu
+            mpBTNKoloriLinii.Enabled = true;
+            mpBTNKolorTla.Enabled = true;
+            mpCMBStylLinii.Enabled = true;
+            mpTRBGruboscLinii.Enabled = true;
+            // odblokowanie mpBTNPoSortowaniu
+            mpBTNPoSortowaniu.Enabled = true;
+            // odblokowanie resetu
+            mpBTNReset.Enabled = true;
+            // ustawienie domyślnego stylu linii
+            mpCMBStylLinii.SelectedIndex = 1;
         }
 
         private void mpBTNPoSortowaniu_Click(object sender, EventArgs e)
         {
+            // pokazanie kontrolki i schowanie pozostałych 
+            mpDGVPoSortowaniu.Visible = true;
+            mpDGVTabelaWynikow.Visible = false;
+            mpChartWykresKosztuCzasowego.Visible = false;
 
+            // wyczyszczenie wierszy
+            mpDGVPoSortowaniu.Rows.Clear();
+
+            // umieszcznie danych w tabeli
+            for (ushort mpI = 0; mpI < mpT.Length - 1; mpI++)
+            {
+                mpDGVPoSortowaniu.Rows.Add();
+                mpDGVPoSortowaniu.Rows[mpI].Cells[0].Value = mpI;
+                mpDGVPoSortowaniu.Rows[mpI].Cells[1].Value = mpT[mpI];
+            }
+        }
+
+        private void mpBTNKoloriLinii_Click(object sender, EventArgs e)
+        {
+            mpColorDialog1.ShowDialog(); // wyświetlenie kolor dialog
+            mpTXTKolorLinii.BackColor = mpColorDialog1.Color; // zmiana koloru mpTXTKolorLinii
+            // zmiana koloru linii
+            mpChartWykresKosztuCzasowego.Series[0].Color = mpTXTKolorLinii.BackColor;
+            mpChartWykresKosztuCzasowego.Series[1].Color = mpTXTKolorLinii.BackColor;
+            mpChartWykresKosztuCzasowego.Series[2].Color = mpTXTKolorLinii.BackColor;
+        }
+
+        private void mpBTNKolorTla_Click(object sender, EventArgs e)
+        {
+            mpColorDialog1.ShowDialog(); // wyświetlenie kolor dialog
+            mpTXTKolorTla.BackColor = mpColorDialog1.Color; // zmiana koloru mpTXTKolorTla
+            // zmiana koloru tła
+            mpChartWykresKosztuCzasowego.BackColor = mpTXTKolorTla.BackColor;
+        }
+
+        private void mpTRBGruboscLinii_Scroll(object sender, EventArgs e)
+        {
+            // zmiana napisu w mpTXTGruboscLinii
+            mpTXTGruboscLinii.Text = mpTRBGruboscLinii.Value.ToString();
+            // zmiana grubości linii
+            mpChartWykresKosztuCzasowego.Series[0].BorderWidth = int.Parse(mpTXTGruboscLinii.Text);
+            mpChartWykresKosztuCzasowego.Series[1].BorderWidth = int.Parse(mpTXTGruboscLinii.Text);
+            mpChartWykresKosztuCzasowego.Series[2].BorderWidth = int.Parse(mpTXTGruboscLinii.Text);
+        }
+        // funkcja zwracająca wybrany typ linii
+        private ChartDashStyle mpZmianaTypuLinii(int index)
+        {
+            switch (index)
+            {
+                case 0: return ChartDashStyle.Dash;
+                case 1: return ChartDashStyle.DashDot;
+                case 2: return ChartDashStyle.DashDotDot;
+                case 3: return ChartDashStyle.Dot;
+                default: return ChartDashStyle.Solid;
+            }
+        }
+
+        private void mpCMBStylLinii_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var mpStyl = mpZmianaTypuLinii(mpCMBStylLinii.SelectedIndex);
+            mpChartWykresKosztuCzasowego.Series[0].BorderDashStyle = mpStyl;
+            mpChartWykresKosztuCzasowego.Series[1].BorderDashStyle = mpStyl;
+            mpChartWykresKosztuCzasowego.Series[2].BorderDashStyle = mpStyl;
+        }
+
+        private void mpBTNReset_Click(object sender, EventArgs e)
+        {
+            // schwowanie tabeleke i wykresu
+            mpChartWykresKosztuCzasowego.Visible = false;
+            mpDGVPoSortowaniu.Visible = false;
+            mpDGVTabelaWynikow.Visible = false;
+            // zablokowanie kontrolek
+            mpBTNReset.Enabled = false;
+            mpBTNPoSortowaniu.Enabled = false;
+            mpBTNKolorTla.Enabled = false;
+            mpBTNKoloriLinii.Enabled = false;
+            mpTRBGruboscLinii.Enabled = false;
+            mpCMBStylLinii.Enabled = false;
+            // przywrócenie oryginalnych wartości
+            mpTXTDolnaGranica.Text = null;
+            mpTXTGornaGranica.Text = null;
+            mpTXTGruboscLinii.Text = "1";
+            mpTXTKolorLinii.BackColor = Color.Red;
+            mpTXTKolorTla.BackColor = Color.White;
+            mpTRBGruboscLinii.Value = 1;
+            mpTXTMinimalnaProbaBadawcza.Text = null;
+            mpTXTRozmiar.Text = null;
+            mpCMBAlgorytmySortowania.SelectedIndex = -1;
+            mpCMBStylLinii.SelectedIndex = 1;
         }
     }
 }
