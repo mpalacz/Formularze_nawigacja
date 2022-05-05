@@ -161,6 +161,8 @@ namespace Formularze_nawigacja
             // odblokowanie mpBTNWizualizacjaTablicyPoSortowaniu i schowanie mpDGVPoSortowaniu
             mpBTNWizualizacjaTablicyPoSortowaniu.Enabled = true;
             mpDGVPoSortowaniu.Visible = false;
+            // odblokowanie mpBTNReset
+            mpBTNReset.Enabled = true;
         }
 
         // funkcja zwracająca wybrany typ linii
@@ -196,6 +198,8 @@ namespace Formularze_nawigacja
             mpCHTWykresWynikow.Titles.Add("Złożonośc obliczeniowa algorytmów MergeSort i BucketSort"); // dodanie tytułu
 
             mpCHTWykresWynikow.BackColor = mpBTNKolorTla.BackColor; // ustawienie koloru tła
+            mpCHTWykresWynikow.ChartAreas["ChartArea1"].BackColor = mpBTNKolorTla.BackColor;
+            mpCHTWykresWynikow.Legends["Legend1"].BackColor = mpBTNKolorTla.BackColor;
             mpCHTWykresWynikow.Legends["Legend1"].Docking = Docking.Bottom; // ustwaienie legendy pod wykresem
             mpCHTWykresWynikow.Series.Clear(); // wyczyszczenie serii
 
@@ -252,6 +256,8 @@ namespace Formularze_nawigacja
             // odblokowanie mpBTNWizualizacjaTablicyPoSortowaniu i schowanie mpDGVPoSortowaniu
             mpBTNWizualizacjaTablicyPoSortowaniu.Enabled = true;
             mpDGVPoSortowaniu.Visible = false;
+            // odblokowanie mpBTNReset
+            mpBTNReset.Enabled = true;
 
             // ustawienie domyślnych rodzajów linii dla wykresu
             mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.SelectedIndex = 0;
@@ -381,6 +387,26 @@ namespace Formularze_nawigacja
 
         private void mpBTNReset_Click(object sender, EventArgs e)
         {
+            // ustawienie domyślnych ustawień dla elementów ustawień wykresu
+            mpBTNKolorTla.BackColor=Color.White;
+            mpBTNKosztCzasowyMergeSortKolor.BackColor = Color.Red;
+            mpBTNAnalitycznyKosztCzasowyMergeSortKolor.BackColor=Color.Green;
+            mpBTNKosztPamieciowyMergeSortKolor.BackColor = Color.Blue;
+            mpBTNKosztCzasowyBucketSortKolor.BackColor = Color.Yellow;
+            mpBTNAnalitycznyKosztCzasowyBucketSortKolor.BackColor = Color.Orange;
+            mpBTNKosztPamieciowyBucketSortKolor.BackColor = Color.Purple;
+            mpNUDAnalitycznyKosztCzasowyBucketSortGruboscLinii.Value = 1;
+            mpNUDAnalitycznyKosztCzasowyMergeSortGruboscLinii.Value = 1;
+            mpNUDKosztCzasowyBucketSortGruboscLinii.Value = 1;
+            mpNUDKosztCzasowyMergeSortGruboscLinii.Value = 1;
+            mpNUDKosztPamieciowyBucketSortGruboscLinii.Value = 1;
+            mpNUDKosztPamieciowyMergeSortGruboscLinii.Value = 1;
+            mpCMBAnalitycznyKosztCzasowyBucketSortRodzajLinii.SelectedIndex = 0;
+            mpCMBAnalitycznyKosztCzasowyMergeSortRodzajLinii.SelectedIndex = 0;
+            mpCMBKosztCzasowyBucketSortRodzajLinii.SelectedIndex = 1;
+            mpCMBKosztCzasowyMergeSortRodzajLinii.SelectedIndex = 1;
+            mpCMBKosztPamieciowyBucketSortRodzajLinii.SelectedIndex = 2;
+            mpCMBKosztPamieciowyMergeSortRodzajLinii.SelectedIndex = 2;
             // wyczyszczenie kotrolki errorProvider
             mpErrorProvider1.Clear();
             // wyczyszczenie kontrolki chart
@@ -401,6 +427,8 @@ namespace Formularze_nawigacja
             // zablokowanie mpBTNWizualizacjaTablicyPoSortowaniu i schowanie mpDGVPoSortowaniu
             mpBTNWizualizacjaTablicyPoSortowaniu.Enabled = false;
             mpDGVPoSortowaniu.Visible = false;
+            // zablokowanie przycisku Reset
+            mpBTNReset.Enabled = false;
         }
 
         private void mpBTNWizualizacjaTablicyPoSortowaniu_Click(object sender, EventArgs e)

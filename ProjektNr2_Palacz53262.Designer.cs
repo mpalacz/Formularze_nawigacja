@@ -30,9 +30,9 @@ namespace Formularze_nawigacja
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.mpBTNWizualizacjaTablicyPoSortowaniu = new System.Windows.Forms.Button();
             this.mpBTNWynikiTabelarycznie = new System.Windows.Forms.Button();
             this.mpBTNWykreWynikow = new System.Windows.Forms.Button();
@@ -139,6 +139,7 @@ namespace Formularze_nawigacja
             // 
             // mpBTNReset
             // 
+            this.mpBTNReset.Enabled = false;
             this.mpBTNReset.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.mpBTNReset.Location = new System.Drawing.Point(660, 595);
             this.mpBTNReset.Name = "mpBTNReset";
@@ -285,16 +286,16 @@ namespace Formularze_nawigacja
             // 
             // mpCHTWykresWynikow
             // 
-            chartArea1.Name = "ChartArea1";
-            this.mpCHTWykresWynikow.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.mpCHTWykresWynikow.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.mpCHTWykresWynikow.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.mpCHTWykresWynikow.Legends.Add(legend2);
             this.mpCHTWykresWynikow.Location = new System.Drawing.Point(12, 41);
             this.mpCHTWykresWynikow.Name = "mpCHTWykresWynikow";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.mpCHTWykresWynikow.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.mpCHTWykresWynikow.Series.Add(series2);
             this.mpCHTWykresWynikow.Size = new System.Drawing.Size(804, 548);
             this.mpCHTWykresWynikow.TabIndex = 14;
             this.mpCHTWykresWynikow.Text = "chart1";
